@@ -1,42 +1,44 @@
-package ss1_introduction_to_java.bai_tap;
+package ss1_introduction_to_java.exercise;
 
 import java.util.Scanner;
 
-public class doc_so_thanh_chu {
+public class ReadNumberIntoWords {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập số cần đọc");
         int number = Integer.parseInt(scanner.nextLine());
 
-        String units = "";
-        switch (number % 10) {
+        String hundreds = "";
+        switch (number / 100) {
+            case 0:
+                hundreds = "Không trăm";
+                break;
             case 1:
-                units = "một";
+                hundreds = "Một trăm";
                 break;
             case 2:
-                units = "hai";
+                hundreds = "Hai trăm";
                 break;
             case 3:
-                units = "ba";
+                hundreds = "Ba trăm";
                 break;
             case 4:
-                units = "bốn";
+                hundreds = "Bốn trăm";
                 break;
             case 5:
-                units = "năm";
+                hundreds = "Năm trăm";
                 break;
             case 6:
-                units = "sáu";
+                hundreds = "Sáu trăm";
                 break;
             case 7:
-                units = "bảy";
+                hundreds = "Bảy trăm";
                 break;
             case 8:
-                units = "tám";
+                hundreds = "Tám trăm";
                 break;
             case 9:
-                units = "chín";
-                break;
+                hundreds = "Chín trăm";
         }
 
         String tens = "";
@@ -72,37 +74,41 @@ public class doc_so_thanh_chu {
                 tens = "chín mươi";
         }
 
-        String hundreds = "";
-        switch (number / 100) {
-            case 0:
-                hundreds = "Không trăm";
-                break;
+        String units = "";
+        switch (number % 10) {
             case 1:
-                hundreds = "Một trăm";
+                units = "một";
                 break;
             case 2:
-                hundreds = "Hai trăm";
+                units = "hai";
                 break;
             case 3:
-                hundreds = "Ba trăm";
+                units = "ba";
                 break;
             case 4:
-                hundreds = "Bốn trăm";
+                units = "bốn";
                 break;
-            case 5:
-                hundreds = "Năm trăm";
+            case 5: {
+                if (!tens.equals("lẻ"))
+                {
+                    units = "lăm";
+                    break;
+                }
+                units = "năm";
                 break;
+            }
             case 6:
-                hundreds = "Sáu trăm";
+                units = "sáu";
                 break;
             case 7:
-                hundreds = "Bảy trăm";
+                units = "bảy";
                 break;
             case 8:
-                hundreds = "Tám trăm";
+                units = "tám";
                 break;
             case 9:
-                hundreds = "Chín trăm";
+                units = "chín";
+                break;
         }
 //        System.out.println("số đã nhâp: " + number);
 //        System.out.println("Cách đọc: " + hundreds + " " + tens + " " + units);

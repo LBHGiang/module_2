@@ -1,8 +1,8 @@
-package ss1_introduction_to_java.bai_tap;
+package ss1_introduction_to_java.exercise;
 
 import java.util.Scanner;
 
-public class hien_thi_loi_chao {
+public class ShowWelcome {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tên của bạn:");
