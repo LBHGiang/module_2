@@ -1,0 +1,40 @@
+
+/*
+        Tạo chuỗi reading để ghi cách đọc.
+        B1: number < 0 Hoặc >=1000 : Số ko hợp lệ
+        B2: Đọc số 0 -> "không"
+        B3: Đọc số hàng trăm
+        B4: Loại số 00
+        B5: Nếu số hàng trăm khác 0 thì thêm "and" trong cách đọc
+        B6: Đọc các số có cách đọc đặc biệt 10-19
+        B7: Đọc các số còn lại (có quy luật)
+            - B7-1: Đọc chữ số hàng chục
+            - B7-2: Đọc chữ số hàng đơn vị
+
+        Giải thích các bước:
+        B1: Dòng 12,13
+        B2: (Nằm trong ELSE của B1) Dòng 14,15
+        B3:(B3 B4 B5 B6 B7 Nằm trong ELSE của B2) Dòng 17-44
+        Đọc chữ số hàng trăm.
+        -> Lấy ra chữ số hàng trăm: VD: 561/100 = 5 -> reading = "Five Hundred"
+
+        Sau khi đọc chữ số hàng trăm - đọc tiếp chữ số hàng chục và đơn vị
+        - Đọc các số có cách đọc đặc biệt là 00, 10->19
+        - Sau đó đọc các số còn lại (có quy luật, dễ đọc)
+
+        B4: Dòng 45-47
+        Số có tận cùng là 00 thì không cần đọc (vd: 400 -> "For Hundred")
+        nên không cần xử lý.
+        Nếu số có tận cùng khác 00 thì thêm "and" vào cách đọc (vd: 420 -> For Hundred and twenty)
+
+        Dòng IF số 48 xác định chữ số hàng chục là 1 hay khác 1.
+        - Nếu là 1, tức là các số từ 10-19 sẽ có cách đọc đặc biệt. B5 Dòng 49-79 đọc các số 10-19.
+        - Nếu khác 1, tức là các số còn lại từ 20-99, có cách đọc theo quy luật:
+             + Đọc số hàng chục B7-1 Dòng 81-105 (Cái (number / 10) % 10 sẽ cho ra số hàng chục
+                   vd: 421/10=42 -> 42 % 10 = 2 -> 2 là chữ số hàng chục.
+             + Dòng 106 Thêm dấu khoảng trống
+             + Đọc số hàng đơn vị (number % 10 ) sẽ cho ra số hàng đơn vị.
+                 vd: 421 % 10 = 1 -> 1 là chữ số hàng đơn vị
+
+         Xuất kết quả.
+        */
