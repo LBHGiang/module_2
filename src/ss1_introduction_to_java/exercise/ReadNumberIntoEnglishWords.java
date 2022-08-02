@@ -103,7 +103,7 @@ public class ReadNumberIntoEnglishWords {
                     case 9:
                         reading += "ninety";
                 }
-                reading += " ";
+                reading+= " ";
                 switch (number % 10) {
                     case 1:
                         reading += "one";
@@ -137,9 +137,10 @@ public class ReadNumberIntoEnglishWords {
         }
 
 
-        System.out.println("số đã nhâp: " + number);
-        System.out.println("Cách đọc: " + reading);
+//        System.out.println("số đã nhâp: " + number);
+//        System.out.println("Cách đọc: " + reading);
 
-
+        System.out.printf("%-20s%d\n", "Số đã nhập:", number);
+        System.out.printf("%-20s%s", "Cách đọc:", reading);
     }
 }

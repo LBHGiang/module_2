@@ -36,5 +36,5 @@
              + Đọc số hàng đơn vị (number % 10 ) sẽ cho ra số hàng đơn vị.
                  vd: 421 % 10 = 1 -> 1 là chữ số hàng đơn vị
 
-
+         Xuất kết quả.
         */

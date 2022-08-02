@@ -89,8 +89,7 @@ public class ReadNumberIntoWords {
                 units = "bốn";
                 break;
             case 5: {
-                if (!tens.equals("lẻ"))
-                {
+                if (!tens.equals("lẻ")) {
                     units = "lăm";
                     break;
                 }
