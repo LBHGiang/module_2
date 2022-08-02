@@ -10,8 +10,9 @@ public class DisplayPrimesLessThan100 {
 
         int number = 2;
 
+        boolean isPrime;
         while (number < range) {
-            boolean isPrime = true;
+            isPrime = true;
             for (int i = 2; i < number; i++) {
                 if (number % i == 0) {
                     isPrime = false;

@@ -10,8 +10,9 @@ public class DisplayFirst20Primes {
 
         int count = 0;
         int number = 2;
+        boolean isPrime;
         while (count < amount) {
-            boolean isPrime = true;
+            isPrime = true;
             for (int i = 2; i < number; i++) {
                 if (number % i == 0) {
                     isPrime = false;
