@@ -14,6 +14,7 @@ public class ReadNumberIntoEnglishWords {
         } else if (number == 0) {
             reading += "zero";
         } else {
+            //đọc số hàng trăm
             switch (number / 100) {
                 case 1:
                     reading += "One Hundred";
@@ -42,11 +43,13 @@ public class ReadNumberIntoEnglishWords {
                 case 9:
                     reading += "Nine Hundred";
             }
-            if (number / 100 != 0) {
+            //Thêm and cho các số khác 0xx và x00
+            if (number / 100 != 0 && number % 100 != 0) {
                 reading += " and ";
             }
             if ((number / 10) % 10 == 1) {
                 switch (number % 100) {
+                    //đọc các số từ 10-19
                     case 10:
                         reading += "ten";
                         break;
@@ -78,6 +81,7 @@ public class ReadNumberIntoEnglishWords {
                         reading += "nineteen";
                 }
             } else {
+                //đọc số hàng chục
                 switch ((number / 10) % 10) {
                     case 2:
                         reading += "twenty";
@@ -103,7 +107,8 @@ public class ReadNumberIntoEnglishWords {
                     case 9:
                         reading += "ninety";
                 }
-                reading+= " ";
+                reading += " ";
+                //đọc số hàng đơn vị
                 switch (number % 10) {
                     case 1:
                         reading += "one";
