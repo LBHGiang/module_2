@@ -1,10 +1,25 @@
-package ss3_arrays_and_methods_in_java.practice;
+package group_exercise;
 
-import java.util.Scanner;
-
-public class test {
+public class PrintHollowRhombus {
     public static void main(String[] args) {
 
+        for (int i = -5; i < 6; i++) {
+            if (i == 0 || i == -1) {
+                continue;
+            }
+            for (int j = -5; j < 6; j++) {
+                if (Math.abs(i) + Math.abs(j) == 6) {
+                    System.out.print(Math.abs(j));
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+
+        }
+
+        /*
+        //Vẽ hình thoi với n là số lớn nhất trong hình thoi, n do người dùng nhập
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập n là số lớn nhất trong hình thoi");
         int n = Integer.parseInt(scanner.nextLine()) + 1;
@@ -23,7 +38,7 @@ public class test {
             System.out.println();
 
         }
+         */
 
     }
 }
-

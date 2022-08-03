@@ -1,12 +1,30 @@
 package ss3_arrays_and_methods_in_java.practice;
 
-import java.util.Arrays;
-
 public class test2 {
+
     public static void main(String[] args) {
-        int[] array = new int[7];
 
+        for (int i = 1; i < 6; i++) {
+            for (int j = -5; j < 6; j++) {
+                if (i == j || -i == j) {
+                    System.out.print(i);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
 
-        System.out.println(Arrays.toString(array));
+        }
+        for (int i = 4; i > 0; i--) {
+            for (int j = -5; j < 6; j++) {
+                if (i == j || -i == j) {
+                    System.out.print(i);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+
+        }
     }
 }
