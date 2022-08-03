@@ -1,4 +1,4 @@
-package ss3_arrays_and_methods_in_java.practice;
+package ss3_arrays_and_methods_in_java.exercise;
 
 import java.util.Scanner;
 
@@ -49,7 +49,6 @@ public class SumTheNumbersInColumn {
 
     //display array method
     public static void displayElementFromTwoDimensionalArray(double[][] arr) {
-        Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
