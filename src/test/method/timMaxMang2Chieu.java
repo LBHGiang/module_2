@@ -1,4 +1,4 @@
-package method;
+package test.method;
 
 public class timMaxMang2Chieu {
     //Tìm max mảng 2 chiều, tham số là mảng 2 chiều -> xuất ra max và tọa độ. Không return

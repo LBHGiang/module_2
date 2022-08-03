@@ -26,7 +26,7 @@ public class ReverseTheElementsOfAnArray {
         System.out.println(Arrays.toString(array));
     }
 
-    //input length method
+    //input length test.method
     public static int inputNumber(String nameOfVariable) {
         Scanner scanner = new Scanner(System.in);
 
@@ -48,7 +48,7 @@ public class ReverseTheElementsOfAnArray {
 
     }
 
-    //input element method
+    //input element test.method
     public static int[] inputElementForArray(int length) {
         Scanner scanner = new Scanner(System.in);
         int[] arr = new int[length];
@@ -60,7 +60,7 @@ public class ReverseTheElementsOfAnArray {
         return arr;
     }
 
-    //reverse array method
+    //reverse array test.method
     public static int[] reverseArray(int[] arr) {
         Scanner scanner = new Scanner(System.in);
         int i;
