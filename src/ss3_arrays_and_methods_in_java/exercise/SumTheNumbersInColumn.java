@@ -19,13 +19,9 @@ public class SumTheNumbersInColumn {
 
         double sum = 0;
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (j == col) {
-                    sum += array[i][j];
-                }
-            }
-
+            sum += array[i][col];
         }
+
 
         System.out.println("Array:");
         displayElementFromTwoDimensionalArray(array);
