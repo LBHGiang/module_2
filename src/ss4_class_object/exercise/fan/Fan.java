@@ -2,16 +2,17 @@ package ss4_class_object.exercise.fan;
 
 public class Fan {
 
-    int speed = 1;
+    private int speed = 1;
     private boolean on = false;
     private double radius = 5;
     private String color = "blue";
 
     public void setSpeed(int speed) {
-        if (speed != 1 || speed != 2 || speed != 3) {
+        if (speed != 1 && speed != 2 && speed != 3) {
             System.out.println("can't set " + speed + "! Speed must be 1,2 or 3.");
         } else {
-        this.speed = speed;}
+            this.speed = speed;
+        }
     }
 
     public void setOn() {
@@ -63,24 +64,20 @@ public class Fan {
     //constructor
 
     public Fan() {
-        this.speed = 1;
-        this.on = false;
-        this.radius = 5;
-        this.color = "blue";
     }
 
     @Override
     public String toString() {
         if (on) {
             return "Fan is on {" +
-                    "speed=" + getSpeed() +
-                    ", radius=" + radius +
-                    ", color='" + color + '\'' +
+                    "speed=" + this.speed +
+                    ", radius=" + this.radius +
+                    ", color='" + this.color + '\'' +
                     '}';
         } else {
             return "Fan is off {" +
-                    ", radius=" + radius +
-                    ", color='" + color + '\'' +
+                    "radius=" + this.radius +
+                    ", color='" + this.color + '\'' +
                     '}';
         }
     }
