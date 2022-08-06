@@ -78,7 +78,7 @@ public class MainCandidate {
         return number;
     }
 
-    //Phương thức kiểm nhập điểm, yêu cầu >=0 và <=10
+    //Phương thức  nhập điểm, yêu cầu >=0 và <=10
     public static int inputScore(String nameOfVariable) {
         Scanner scanner = new Scanner(System.in);
 
