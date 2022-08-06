@@ -6,20 +6,19 @@ import java.util.Scanner;
 public class NhapPhanTuChomang1Chieu {
     public static void main(String[] args) {
         int length = 5;
-        int[] array = inputElementForArray(length);
+        int[] array = new int[length];
+        inputElementForArray(array);
         System.out.println(Arrays.toString(array));
     }
 
-    // Nhập phần tử cho mảng số nguyên, truyền vào độ dài mảng
-    public static int[] inputElementForArray(int length) {
+    // Nhập phần tử cho mảng số nguyên, tham số truyền vào là một mảng
+    public static void inputElementForArray(int[] arr) {
         Scanner scanner = new Scanner(System.in);
-        int[] arr = new int[length];
-        int i;
-        for (i = 0; i < length; i++) {
+
+        for (int i = 0; i < arr.length; i++) {
             System.out.printf("array[%d]= ", i);
             arr[i] = Integer.parseInt(scanner.nextLine());
         }
-        return arr;
     }
 
 }

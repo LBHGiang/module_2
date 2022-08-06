@@ -6,7 +6,7 @@ public class KiemTraSoNhapVao {
 
     public static void main(String[] args) {
         int amount;
-        amount = inputNumber("Số lượng");
+        amount = inputNumber("Amount");
     }
 
     public static int inputNumber(String nameOfVariable) {
@@ -15,7 +15,7 @@ public class KiemTraSoNhapVao {
         int number;
         boolean numberIsInvalid;
 
-        System.out.print("Enter the " + nameOfVariable);
+        System.out.print("Enter " + nameOfVariable);
         do {
             number = Integer.parseInt(scanner.nextLine());
             numberIsInvalid = number < 0 || number > 20;
