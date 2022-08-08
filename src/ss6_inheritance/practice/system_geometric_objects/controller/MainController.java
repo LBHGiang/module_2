@@ -1,9 +1,9 @@
-package ss6_inheritance.practice.SystemGeometricObjects.Controller;
+package ss6_inheritance.practice.SystemGeometricObjects.controller;
 
-import ss6_inheritance.practice.SystemGeometricObjects.Model.Circle;
-import ss6_inheritance.practice.SystemGeometricObjects.Model.Rectangle;
-import ss6_inheritance.practice.SystemGeometricObjects.Model.Shape;
-import ss6_inheritance.practice.SystemGeometricObjects.Model.Square;
+import ss6_inheritance.practice.SystemGeometricObjects.model.Circle;
+import ss6_inheritance.practice.SystemGeometricObjects.model.Rectangle;
+import ss6_inheritance.practice.SystemGeometricObjects.model.Shape;
+import ss6_inheritance.practice.SystemGeometricObjects.model.Square;
 
 public class MainController {
     public static void main(String[] args) {
