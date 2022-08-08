@@ -1,21 +1,20 @@
-package ss6_inheritance.exercise.point2D_and_point3D.Model;
+package ss6_inheritance.exercise.point_and_moveable_point.model;
 
-public class Point2D {
+public class Point {
     private float x = 0.0f;
     private float y = 0.0f;
 
     //constructor
 
-    public Point2D() {
+    public Point() {
     }
 
-    public Point2D(float x, float y) {
+    public Point(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
     // getter and setter method
-
 
     public float getX() {
         return x;
@@ -46,5 +45,4 @@ public class Point2D {
     public String toString() {
         return String.format("(%.2f,%.2f)", x, y);
     }
-
 }

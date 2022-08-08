@@ -1,7 +1,7 @@
-package ss6_inheritance.exercise.circle_and_cylinder.Controller;
+package ss6_inheritance.exercise.circle_and_cylinder.controller;
 
-import ss6_inheritance.exercise.circle_and_cylinder.Model.Circle;
-import ss6_inheritance.exercise.circle_and_cylinder.Model.Cylinder;
+import ss6_inheritance.exercise.circle_and_cylinder.model.Circle;
+import ss6_inheritance.exercise.circle_and_cylinder.model.Cylinder;
 
 public class MainController {
     public static void main(String[] args) {

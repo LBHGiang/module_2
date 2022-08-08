@@ -1,4 +1,4 @@
-package ss6_inheritance.exercise.circle_and_cylinder.Model;
+package ss6_inheritance.exercise.circle_and_cylinder.model;
 
 public class Circle {
     private double radius;
