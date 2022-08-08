@@ -10,6 +10,7 @@ public class Rectangle extends Shape {
         this.length = 1.0;
     }
 
+
     public Rectangle(double width, double length) {
         this.width = width;
         this.length = length;
@@ -54,7 +55,7 @@ public class Rectangle extends Shape {
             return String.format("A rectangle with color of %s, filled and length = %f, width = %f ",
                     getColor(), this.length, this.width);
         }
-        return  String.format("A rectangle with color of %s, not filled and length = %f, width = %f ",
+        return String.format("A rectangle with color of %s, not filled and length = %f, width = %f ",
                 getColor(), this.length, this.width);
     }
 }

@@ -34,11 +34,6 @@ public class Shape {
     }
 
     public String toString() {
-        if (this.filled) {
-            return "A Shape with color of " + this.color + " and filled";
-        }
-
-        return "A Shape with color of " + this.color + " and not filled";
+            return "A Shape with color of " + this.color + (isFilled()? " and filled.":" and not filled.");
     }
-
 }
