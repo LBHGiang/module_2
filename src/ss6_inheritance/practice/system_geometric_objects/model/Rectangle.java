@@ -1,5 +1,7 @@
 package ss6_inheritance.practice.SystemGeometricObjects.model;
 
+import ss6_inheritance.practice.system_geometric_objects.model.Shape;
+
 public class Rectangle extends Shape {
     private double width = 0;
     private double length = 0;

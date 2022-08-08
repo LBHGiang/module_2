@@ -1,6 +1,6 @@
-package ss6_inheritance.practice.SystemGeometricObjects.model;
+package ss6_inheritance.practice.system_geometric_objects.model;
 
-public class Square extends Rectangle {
+public class Square extends ss6_inheritance.practice.SystemGeometricObjects.model.Rectangle {
 
     //constructor
     public Square(double side) {

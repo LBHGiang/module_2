@@ -1,4 +1,4 @@
-package ss6_inheritance.practice.SystemGeometricObjects.model;
+package ss6_inheritance.practice.system_geometric_objects.model;
 
 public class Shape {
     private String color = "";
