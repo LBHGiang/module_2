@@ -54,7 +54,9 @@ public class Student {
     }
 
     public String getGender() {
-        if (this.gender){return "MALE";}
+        if (this.gender) {
+            return "MALE";
+        }
         return "FEMALE";
     }
 
@@ -79,4 +81,7 @@ public class Student {
                 ", className='" + className + '\'' +
                 '}';
     }
+
+
+
 }

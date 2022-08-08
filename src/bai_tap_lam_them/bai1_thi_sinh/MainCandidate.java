@@ -7,7 +7,7 @@ public class MainCandidate {
 
         //Nhập số lượng phần tử bằng method
         int numbers;
-        numbers = inputNumber("The number of student");
+        numbers = inputNumber("The number of student ");
 
         //Tạo mảng đối tượng các thí sinh. Nhập phần tử cho mảng bằng method
         Candidate[] array = new Candidate[numbers];
@@ -71,7 +71,8 @@ public class MainCandidate {
 
             if (numberIsInvalid) {
                 System.out.printf("Invalid input value\n" +
-                        "Retype %s >=0 and %s <=20", nameOfVariable, nameOfVariable);
+                        "Retype %s >=0 and %s <=20 \n" +
+                        "Enter the %s", nameOfVariable, nameOfVariable,nameOfVariable);
             }
 
         } while (numberIsInvalid);
@@ -92,7 +93,8 @@ public class MainCandidate {
 
             if (numberIsInvalid) {
                 System.out.printf("Invalid input value\n" +
-                        "Retype %s >=0 and %s <=10", nameOfVariable, nameOfVariable);
+                        "Retype %s >=0 and %s <=10 \n" +
+                        "Enter the %s", nameOfVariable, nameOfVariable,nameOfVariable);
             }
 
         } while (numberIsInvalid);
