@@ -1,7 +1,6 @@
-package ss6_inheritance.practice.system_geometric_objects.model;
+package ss7_abstract_interface.exercise.interface_resizeable.model;
 
-public class Square extends Rectangle {
-
+public class Square extends Rectangle implements Resizeable {
     //constructor
     public Square(double side) {
         super(side, side);
@@ -29,4 +28,8 @@ public class Square extends Rectangle {
                 getColor(), getSide());
     }
 
+    @Override
+    public void resize(double percent) {
+        set(getSide() * (1 + percent / 100));
+    }
 }

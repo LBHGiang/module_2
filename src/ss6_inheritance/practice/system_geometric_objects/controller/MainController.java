@@ -1,7 +1,7 @@
 package ss6_inheritance.practice.system_geometric_objects.controller;
 
-import ss6_inheritance.practice.SystemGeometricObjects.model.Circle;
-import ss6_inheritance.practice.SystemGeometricObjects.model.Rectangle;
+import ss6_inheritance.practice.system_geometric_objects.model.Circle;
+import ss6_inheritance.practice.system_geometric_objects.model.Rectangle;
 import ss6_inheritance.practice.system_geometric_objects.model.Shape;
 import ss6_inheritance.practice.system_geometric_objects.model.Square;
 

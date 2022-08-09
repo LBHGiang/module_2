@@ -1,6 +1,6 @@
-package ss6_inheritance.practice.system_geometric_objects.model;
+package ss7_abstract_interface.exercise.interface_resizeable.model;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Resizeable{
     private double width = 1;
     private double length = 1;
 
@@ -41,6 +41,7 @@ public class Rectangle extends Shape {
     }
 
     //get area and perimeter
+
     public double getArea() {
         return this.width * this.length;
     }
@@ -57,5 +58,11 @@ public class Rectangle extends Shape {
         }
         return String.format("A rectangle with color of %s, not filled and length = %f, width = %f ",
                 getColor(), this.length, this.width);
+    }
+
+    @Override
+    public void resize(double percent) {
+        this.width *= 1+percent/100;
+        this.length *= 1+percent/100;
     }
 }

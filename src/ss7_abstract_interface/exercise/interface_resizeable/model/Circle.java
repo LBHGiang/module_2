@@ -1,6 +1,6 @@
-package ss6_inheritance.practice.system_geometric_objects.model;
+package ss7_abstract_interface.exercise.interface_resizeable.model;
 
-public class Circle extends Shape {
+public class Circle extends Shape implements Resizeable{
     private double radius;
 
     //constructor
@@ -45,5 +45,11 @@ public class Circle extends Shape {
         return String.format("A circle with color of %s, not filled and radius = %.2f",
                 getColor(), this.radius);
     }
+
+    @Override
+    public void resize(double percent) {
+        this.radius *= 1+percent/100;
+    }
+
 
 }

@@ -1,7 +1,7 @@
 package ss7_abstract_interface.practice.interface_comparable;
 
 public class ComparableCircle extends
-        ss6_inheritance.practice.SystemGeometricObjects.model.Circle
+        ss6_inheritance.practice.system_geometric_objects.model.Circle
         implements Comparable<ComparableCircle> {
 
     //constructor
