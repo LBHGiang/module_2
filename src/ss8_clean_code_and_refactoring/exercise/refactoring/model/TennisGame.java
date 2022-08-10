@@ -8,6 +8,7 @@ public class TennisGame {
     private static final int FORTY = 3;
 
     public static String readScore(String player1Name, String player2Name, int player1Score, int player2Score) {
+        System.out.println(player1Name + " - " + player2Name);
 
         boolean isEqual = player1Score == player2Score;
 
@@ -19,7 +20,7 @@ public class TennisGame {
         if (isAdvantage) {
             return readAdvantageScore(player1Name, player2Name, player1Score, player2Score);
         }
-        String score = player1Name + " - " + player2Name + "\n";
+        String score = "";
         score += readEachPlayerScore(player1Score) + " - " + readEachPlayerScore(player2Score);
         return score;
     }
