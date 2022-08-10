@@ -9,4 +9,5 @@ public class MainController {
         square.howToColor();
 
     }
+
 }

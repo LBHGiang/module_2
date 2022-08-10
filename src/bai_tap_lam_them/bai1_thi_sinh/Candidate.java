@@ -9,10 +9,10 @@ public class Candidate {
     private double englishScore = 0;
 
     //constructor
-    Candidate() {
+    public Candidate() {
     }
 
-    Candidate(String name, double mathScore, double literatureScore, double englishScore) {
+    public Candidate(String name, double mathScore, double literatureScore, double englishScore) {
         this.name = name;
         if (mathScore < 0 || mathScore > 10 || literatureScore < 0 || literatureScore > 10 || englishScore < 0 || englishScore > 10) {
             System.out.println("Invalid input value, Score must be >= 0 and <=10");
