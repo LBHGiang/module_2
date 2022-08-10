@@ -57,18 +57,7 @@ public class TennisGame {
     }
 
     public static String readEqualScore(int player1Score) {
-        switch (player1Score) {
-            case LOVE:
-                return "Love-All";
-            case FIFTEEN:
-                return "Fifteen-All";
-            case THIRTY:
-                return "Thirty-All";
-            case FORTY:
-                return "Forty-All";
-            default:
-                return "Deuce";
-        }
+        return readEachPlayerScore(player1Score) + "- All";
     }
 
 }
