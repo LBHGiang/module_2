@@ -102,7 +102,16 @@ public class MyList<E> {
         return -1;
     }
 
+    public Object get(int index) {
+        checkIndex(index);
+        return elements[index];
+    }
 
+    public void clear() {
+        elements = new Object[DEFAULT_CAPACITY];
+        this.size = 0;
+        this.capacity = DEFAULT_CAPACITY;
+    }
 
     @Override
     public String toString() {
