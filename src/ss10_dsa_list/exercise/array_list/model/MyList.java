@@ -86,7 +86,7 @@ public class MyList<E> {
     public boolean contains(Object o) {
         for (Object element :
                 elements) {
-            if (element.equals(o)) {
+            if (element == o) {
                 return true;
             }
         }

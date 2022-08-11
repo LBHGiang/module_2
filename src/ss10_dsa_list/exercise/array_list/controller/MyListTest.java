@@ -12,8 +12,9 @@ public class MyListTest {
         array.add(0, 3);
         array.add(0, -4);
         System.out.println(array.toString());
-        Object[] array2 = array.cloneCollection();
-        System.out.println(Arrays.deepToString(array2));
+        System.out.println(array.contains(5));
+
+//        System.out.println(array.toString());
 
 
     }
