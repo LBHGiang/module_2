@@ -1,5 +1,7 @@
 package ss10_dsa_list.exercise.array_list.model;
 
+import java.util.Arrays;
+
 public class MyList<E> {
     private int size = 0;
     static final int DEFAULT_CAPACITY = 10;
@@ -46,6 +48,7 @@ public class MyList<E> {
                 newArr[i] = elements[i];
             }
             elements = newArr;
+
         }
     }
 
@@ -77,16 +80,14 @@ public class MyList<E> {
 
     public Object[] cloneCollection() {
         Object[] newArray = new Object[this.size];
-        for (int i = 0; i < this.size; i++) {
-            newArray[i] = elements[i];
-        }
+        System.arraycopy(elements, 0, newArray, 0, this.size);
         return newArray;
     }
 
     public boolean contains(Object o) {
         for (Object element :
                 elements) {
-            if (element == o) {
+            if (element.equals(o)) {
                 return true;
             }
         }
@@ -108,9 +109,10 @@ public class MyList<E> {
     }
 
     public void clear() {
-        elements = new Object[DEFAULT_CAPACITY];
+        for (int i = 0; i < this.size; i++) {
+            elements[i] = null;
+        }
         this.size = 0;
-        this.capacity = DEFAULT_CAPACITY;
     }
 
     @Override

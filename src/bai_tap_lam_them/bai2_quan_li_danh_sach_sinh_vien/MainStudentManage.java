@@ -2,7 +2,7 @@ package bai_tap_lam_them.bai2_quan_li_danh_sach_sinh_vien;
 
 import java.util.Scanner;
 
-public class MainStudentManage {
+public class MainStudentManage{
     public static void main(String[] args) {
         Student[] array = {};
 
@@ -127,6 +127,8 @@ public class MainStudentManage {
 
     //Sắp xếp theo cột MSSV
     public static void sortStudentList(Student[] arr) {
+
+
         Student x = new Student();
         int char1;
         int char2;
@@ -154,4 +156,5 @@ public class MainStudentManage {
             }
         }
     }
+
 }

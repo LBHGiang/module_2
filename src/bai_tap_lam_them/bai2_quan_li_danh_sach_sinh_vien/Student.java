@@ -4,9 +4,7 @@ public class Student {
     private String code = "0";
     private String name = "";
     private String birthday;
-    private final boolean MALE = true;
-    private final boolean FEMALE = false;
-    private boolean gender = MALE;
+    private boolean gender = true;
     private String className = "";
 
     //constructor

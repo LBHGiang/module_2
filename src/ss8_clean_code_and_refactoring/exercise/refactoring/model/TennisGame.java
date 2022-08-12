@@ -6,6 +6,10 @@ public class TennisGame {
     private static final int FIFTEEN = 1;
     private static final int THIRTY = 2;
     private static final int FORTY = 3;
+    public static final int ADVANTAGE_FOR_PLAYER1 = 1;
+    public static final int ADVANTAGE_FOR_PLAYER2 = -1;
+    public static final int WIN_FOR_PLAYER1 = 2;
+    public static final int WIN_FOR_PLAYER2 = -2;
 
     public static String readScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         System.out.println(player1Name + " - " + player2Name);
@@ -16,10 +20,11 @@ public class TennisGame {
             return readEqualScore(player1Score);
         }
 
-        boolean isAdvantage = player1Score >= 4 || player2Score >= 4;
+        boolean isAdvantage = player1Score + player2Score >= 7;
         if (isAdvantage) {
             return readAdvantageScore(player1Name, player2Name, player1Score, player2Score);
         }
+
         String score = "";
         score += readEachPlayerScore(player1Score) + " - " + readEachPlayerScore(player2Score);
         return score;
@@ -44,13 +49,13 @@ public class TennisGame {
         int advantageScore = player1Score - player2Score;
 
         switch (advantageScore) {
-            case 1:
+            case ADVANTAGE_FOR_PLAYER1:
                 return "Advantage for " + player1Name;
-            case -1:
+            case ADVANTAGE_FOR_PLAYER2:
                 return "Advantage for " + player2Name;
-            case 2:
+            case WIN_FOR_PLAYER1:
                 return "Win for " + player1Name;
-            case -2:
+            case WIN_FOR_PLAYER2:
                 return "Win for " + player2Name;
             default:
                 return "The match was over";
