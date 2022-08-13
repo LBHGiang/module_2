@@ -1,12 +1,11 @@
 package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.controller;
 
-import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.impl.StudentService;
-
 import java.util.Scanner;
 
 public class CodeGymController {
     private Scanner scanner = new Scanner(System.in);
     private StudentController studentController = new StudentController();
+    private TeacherController teacherController = new TeacherController();
     public static boolean continueRunning;
 
     public void menuManagement() {
@@ -24,7 +23,7 @@ public class CodeGymController {
                     studentController.studentManage();
                     break;
                 case 2:
-//                    TeacherController.teacherManage();
+                    teacherController.teacherManage();
                     break;
                 case 3:
                     return;

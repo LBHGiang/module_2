@@ -19,7 +19,7 @@ public class StudentController {
             System.out.println("4. Xóa học sinh");
             System.out.println("5. Trở lại CodeGym menu");
             System.out.println("6. Thoát");
-            System.out.print("Mời bạn nhập chức năng 1->5: ");
+            System.out.print("Mời bạn nhập chức năng 1->6: ");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:

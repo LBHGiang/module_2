@@ -35,7 +35,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void editStudent() {
-        Student student = searchStudentByID("chỉnh sửa");
+        Student student = findStudentByID("chỉnh sửa");
         int choose;
         do {
             System.out.println("---------------------------------------------");
@@ -78,13 +78,15 @@ public class StudentService implements IStudentService {
             System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
             System.out.println("1- Có ------------- 2- Hoàn tất");
             choose = Integer.parseInt(scanner.nextLine());
-            if(choose != 1) {return;}
+            if (choose != 1) {
+                return;
+            }
         } while (true);
     }
 
     @Override
     public void removeStudent() {
-        Student student = searchStudentByID("xóa");
+        Student student = findStudentByID("xóa");
         if (student == null) {
             System.out.println("ID không tồn tại trong danh sách!");
             return;
@@ -100,7 +102,6 @@ public class StudentService implements IStudentService {
             System.out.println("Xóa sinh viên không thành công");
         }
     }
-
 
 
     public Student getInforStudent() {
@@ -121,13 +122,13 @@ public class StudentService implements IStudentService {
         return new Student(id, name, dateOfBirth, gender, score, className);
     }
 
-    public String getEditInfor(String editContent){
-        System.out.print("Vui lòng nhập "+ editContent+ " mới: ");
+    public String getEditInfor(String editContent) {
+        System.out.print("Vui lòng nhập " + editContent + " mới: ");
         return scanner.nextLine();
     }
 
-    public Student searchStudentByID(String taskName) {
-        System.out.printf("Vui lòng nhập ID của Học sinh cần %s: ", taskName);
+    public Student findStudentByID(String taskName) {
+        System.out.print("Vui lòng nhập ID của Học sinh cần " + taskName);
         int id = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < studentList.size(); i++) {
             if (studentList.get(i).getId() == id) {
