@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class StudentController {
     private Scanner scanner = new Scanner(System.in);
     private IStudentService studentService = new StudentService();
-
+    private static int choice;
     public void studentManage() {
         while (true) {
             System.out.println("---------------------------------------------");
@@ -20,7 +20,7 @@ public class StudentController {
             System.out.println("5. Trở lại CodeGym menu");
             System.out.println("6. Thoát");
             System.out.print("Mời bạn nhập chức năng 1->6: ");
-            int choice = Integer.parseInt(scanner.nextLine());
+            choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
                     studentService.displayAllStudent();

@@ -49,6 +49,53 @@ public class TeacherService implements ITeacherService {
         }
     }
 
+    @Override
+    public void editTeacher() {
+        Teacher teacher = findTeacherById("chỉnh sửa");
+        int choose;
+        do {
+            System.out.println("---------------------------------------------");
+            System.out.println("Sinh viên cần chỉnh sửa:");
+            System.out.println(teacher.toString());
+            System.out.println("Bạn muốn chỉnh sửa nội dung nào?");
+            System.out.println("1. ID");
+            System.out.println("2. Tên học sinh");
+            System.out.println("3. Ngày sinh");
+            System.out.println("4. Giới tính");
+            System.out.println("5. Chuyên môn");
+            System.out.println("6. Thoát");
+            System.out.println("Chọn nội dung cần chỉnh sửa: 1 -> 6");
+            choose = Integer.parseInt(scanner.nextLine());
+
+            switch (choose) {
+                case 1:
+                    teacher.setId(Integer.parseInt(getEditInfor("ID")));
+                    break;
+                case 2:
+                    teacher.setName(getEditInfor("tên"));
+                    break;
+                case 3:
+                    teacher.setDateOfBirth(getEditInfor("ngày sinh"));
+                    break;
+                case 4:
+                    teacher.setGender(getEditInfor("giới tính"));
+                    break;
+                case 5:
+                  teacher.setSpeciality(getEditInfor("chuyên môn"));
+                    break;
+                case 6:
+                    return;
+            }
+            System.out.println("Chỉnh sửa thành công!");
+            System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
+            System.out.println("1- Có ------------- 2- Hoàn tất");
+            choose = Integer.parseInt(scanner.nextLine());
+            if (choose != 1) {
+                return;
+            }
+        } while (true);
+    }
+
     public Teacher getInforTeacher() {
         System.out.println("Vui lòng nhập thông tin cho giáo viên: ");
         System.out.print("ID = ");
@@ -62,6 +109,11 @@ public class TeacherService implements ITeacherService {
         System.out.print("Chuyên môn = ");
         String speciality = scanner.nextLine();
         return new Teacher(id, name, dateOfBirth, gender, speciality);
+    }
+
+    public String getEditInfor(String editContent) {
+        System.out.print("Vui lòng nhập "+ editContent+ " mới: ");
+        return scanner.nextLine();
     }
 
     public Teacher findTeacherById(String taskName) {

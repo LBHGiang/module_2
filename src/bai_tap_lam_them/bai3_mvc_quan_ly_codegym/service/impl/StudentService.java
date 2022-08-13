@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements IStudentService {
-    public static Scanner scanner = new Scanner(System.in);
+    public Scanner scanner = new Scanner(System.in);
     private static List<Student> studentList = new ArrayList<>();
 
     static {
