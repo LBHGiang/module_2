@@ -21,7 +21,7 @@ public class MotorbikeService implements IMotorbikeService {
 
     @Override
     public void addNewMotorbike() {
-        motorbikes.add(getMotorbikeInfor());
+        motorbikes.add(getMotorbikeInfo());
         System.out.println("Thêm xe máy thành công!");
     }
 
@@ -46,7 +46,23 @@ public class MotorbikeService implements IMotorbikeService {
         }
     }
 
-    public Motorbike getMotorbikeInfor() {
+    @Override
+    public Motorbike findMotorbikeToRemove(String licensePlate) {
+        for (Motorbike motorbike :
+                motorbikes) {
+            if (motorbike.getLicensePlate().equals(licensePlate)) {
+                return motorbike;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void removeMotorbike(Motorbike motorbike) {
+        motorbikes.remove(motorbike);
+    }
+
+    public Motorbike getMotorbikeInfo() {
 
         System.out.println("----------------");
         System.out.println("Vui lòng nhập thông tin cho xe máy:");

@@ -3,6 +3,7 @@ package bai_tap_lam_them.bai4_mvc_vehicle_management.service.impl;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.controller.VehicleController;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Car;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Manufacturer;
+import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Truck;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.service.ICarService;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class CarService implements ICarService {
 
     @Override
     public void addNewCar() {
-        cars.add(getCarInfor());
+        cars.add(getCarInfo());
         System.out.println("Thêm xe ô tô thành công!");
     }
 
@@ -46,7 +47,23 @@ public class CarService implements ICarService {
         }
     }
 
-    public Car getCarInfor() {
+    @Override
+    public Car findCarToRemove(String licensePlate) {
+        for (Car car :
+                cars) {
+            if (car.getLicensePlate().equals(licensePlate)) {
+                return car;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void removeCar(Car car) {
+        cars.remove(car);
+    }
+
+    public Car getCarInfo() {
 
         System.out.println("----------------");
         System.out.println("Vui lòng nhập thông tin cho xe ô tô:");

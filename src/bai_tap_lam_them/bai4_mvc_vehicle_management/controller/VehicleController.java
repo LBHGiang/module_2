@@ -117,7 +117,27 @@ public class VehicleController {
     }
 
     private void removeVehicle() {
-
+        System.out.println("----------------");
+        System.out.println("Vui lòng nhập chính xác biển kiểm soát của phương tiện cần xóa: ");
+        String licensePlate = scanner.nextLine();
+        Truck truck = iTruckService.findTruckToRemove(licensePlate);
+        Car car = iCarService.findCarToRemove(licensePlate);
+        Motorbike motorbike = iMotorbikeService.findMotorbikeToRemove(licensePlate);
+        if (truck != null || car != null || motorbike != null) {
+            System.out.println("Bạn chắc chắn xóa phương tiện này chứ: ");
+            System.out.println("1- Có ------------  2- Hủy bỏ");
+            choose = Integer.parseInt(scanner.nextLine());
+            if (choose == 1) {
+                if (truck != null) {
+                    iTruckService.removeTruck(truck);
+                }
+                if (car != null) {
+                    iCarService.removeCar(car);
+                }
+                iMotorbikeService.removeMotorbike(motorbike);
+            }
+            System.out.println("Xóa phương tiện thành công!");
+        }
     }
 
     private void findVehicle() {

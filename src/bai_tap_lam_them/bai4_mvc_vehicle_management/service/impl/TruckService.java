@@ -21,7 +21,7 @@ public class TruckService implements ITruckService {
 
     @Override
     public void addNewTruck() {
-        trucks.add(getTruckInfor());
+        trucks.add(getTruckInfo());
         System.out.println("Thêm xe tải thành công!");
     }
 
@@ -44,10 +44,25 @@ public class TruckService implements ITruckService {
                 VehicleController.foundVehicle = true;
             }
         }
-
     }
 
-    public Truck getTruckInfor() {
+    @Override
+    public void removeTruck(Truck truck) {
+        trucks.remove(truck);
+    }
+
+    @Override
+    public Truck findTruckToRemove(String licensePlate) {
+        for (Truck truck :
+                trucks) {
+            if (truck.getLicensePlate().equals(licensePlate)) {
+                return truck;
+            }
+        }
+        return null;
+    }
+
+    public Truck getTruckInfo() {
 
         System.out.println("----------------");
         System.out.println("Vui lòng nhập thông tin cho xe tải:");
