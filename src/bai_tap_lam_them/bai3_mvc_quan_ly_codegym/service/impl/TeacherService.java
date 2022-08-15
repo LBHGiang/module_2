@@ -18,7 +18,7 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public void addNewTeacher() {
-        teacherList.add(getInforTeacher());
+        teacherList.add(getInfoTeacher());
         System.out.println("Thêm giáo viên thành công!");
     }
 
@@ -69,19 +69,19 @@ public class TeacherService implements ITeacherService {
 
             switch (choose) {
                 case 1:
-                    teacher.setId(Integer.parseInt(getEditInfor("ID")));
+                    teacher.setId(Integer.parseInt(getEditInfo("ID")));
                     break;
                 case 2:
-                    teacher.setName(getEditInfor("tên"));
+                    teacher.setName(getEditInfo("tên"));
                     break;
                 case 3:
-                    teacher.setDateOfBirth(getEditInfor("ngày sinh"));
+                    teacher.setDateOfBirth(getEditInfo("ngày sinh"));
                     break;
                 case 4:
-                    teacher.setGender(getEditInfor("giới tính"));
+                    teacher.setGender(getEditInfo("giới tính"));
                     break;
                 case 5:
-                  teacher.setSpeciality(getEditInfor("chuyên môn"));
+                    teacher.setSpeciality(getEditInfo("chuyên môn"));
                     break;
                 case 6:
                     return;
@@ -96,7 +96,7 @@ public class TeacherService implements ITeacherService {
         } while (true);
     }
 
-    public Teacher getInforTeacher() {
+    public Teacher getInfoTeacher() {
         System.out.println("Vui lòng nhập thông tin cho giáo viên: ");
         System.out.print("ID = ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -111,8 +111,8 @@ public class TeacherService implements ITeacherService {
         return new Teacher(id, name, dateOfBirth, gender, speciality);
     }
 
-    public String getEditInfor(String editContent) {
-        System.out.print("Vui lòng nhập "+ editContent+ " mới: ");
+    public String getEditInfo(String editContent) {
+        System.out.print("Vui lòng nhập " + editContent + " mới: ");
         return scanner.nextLine();
     }
 

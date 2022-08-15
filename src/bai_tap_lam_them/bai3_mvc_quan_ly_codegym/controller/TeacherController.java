@@ -38,8 +38,7 @@ public class TeacherController {
                 case 5:
                     return;
                 case 6:
-                    CodeGymController.continueRunning = false;
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Lựa chọn bạn nhập không đúng!");
             }

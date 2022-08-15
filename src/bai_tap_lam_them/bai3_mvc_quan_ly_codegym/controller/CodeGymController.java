@@ -6,11 +6,9 @@ public class CodeGymController {
     private Scanner scanner = new Scanner(System.in);
     private StudentController studentController = new StudentController();
     private TeacherController teacherController = new TeacherController();
-    public static boolean continueRunning;
 
     public void menuManagement() {
-        continueRunning = true;
-        while (continueRunning) {
+        while (true) {
             System.out.println("-------------------------");
             System.out.println("Chào mừng bạn đến với CodeGym");
             System.out.println("1. Quản lý Sinh viên");
@@ -30,7 +28,6 @@ public class CodeGymController {
                 default:
                     System.out.println("Lựa chọn bạn nhập không đúng!");
             }
-
         }
     }
 

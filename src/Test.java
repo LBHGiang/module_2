@@ -1,32 +1,26 @@
-class Test implements  Comparable{
-    public int a;
-    public static int b;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
-    public Test(int a) {
-        this.a = a;
-    }
-
-    public Test() {
-    }
-
-    public void Test(int a){
-        System.out.println("Đây là phương thức trùng tên constructor");
-    }
-
-    public int sum(){
-        int c=5;
-        return c;
-    }
-
+class Test {
     public static void main(String[] args) {
-       Test test = new Test();
-       test.Test(3);
+        Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
-    }
+        String str = "abcd";
+        System.out.println(str);
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
+        queue.add(str.charAt(0));
+        queue.add(str.charAt(1));
+        queue.add(str.charAt(2));
+        System.out.println(queue);
+
+        queue.remove();
+        System.out.println(queue);
+
+
+
+
     }
 }
 

@@ -29,7 +29,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void addStudent() {
-        studentList.add(getInforStudent());
+        studentList.add(getInfoStudent());
         System.out.println("Thêm mới học sinh thành công!");
     }
 
@@ -54,22 +54,22 @@ public class StudentService implements IStudentService {
 
             switch (choose) {
                 case 1:
-                    student.setId(Integer.parseInt(getEditInfor("ID")));
+                    student.setId(Integer.parseInt(getEditInfo("ID")));
                     break;
                 case 2:
-                    student.setName(getEditInfor("tên"));
+                    student.setName(getEditInfo("tên"));
                     break;
                 case 3:
-                    student.setDateOfBirth(getEditInfor("ngày sinh"));
+                    student.setDateOfBirth(getEditInfo("ngày sinh"));
                     break;
                 case 4:
-                    student.setGender(getEditInfor("giới tính"));
+                    student.setGender(getEditInfo("giới tính"));
                     break;
                 case 5:
-                    student.setScore(Integer.parseInt(getEditInfor("điểm")));
+                    student.setScore(Integer.parseInt(getEditInfo("điểm")));
                     break;
                 case 6:
-                    student.setClassName(getEditInfor("tên lớp"));
+                    student.setClassName(getEditInfo("tên lớp"));
                     break;
                 case 7:
                     return;
@@ -104,7 +104,7 @@ public class StudentService implements IStudentService {
     }
 
 
-    public Student getInforStudent() {
+    public Student getInfoStudent() {
         System.out.println("Vui lòng nhập thông tin cho sinh viên: ");
         System.out.print("ID = ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -122,7 +122,7 @@ public class StudentService implements IStudentService {
         return new Student(id, name, dateOfBirth, gender, score, className);
     }
 
-    public String getEditInfor(String editContent) {
+    public String getEditInfo(String editContent) {
         System.out.print("Vui lòng nhập " + editContent + " mới: ");
         return scanner.nextLine();
     }
