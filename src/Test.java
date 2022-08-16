@@ -1,22 +1,16 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Map<String, Integer> treeMap = new TreeMap<>();
+        treeMap.put("Hải", 1);
+        treeMap.put("Trường", 2);
+        treeMap.put("Giang", 3);
+        treeMap.put("Tiến", 1);
 
-        String str = "abcd";
-        System.out.println(str);
-
-        queue.add(str.charAt(0));
-        queue.add(str.charAt(1));
-        queue.add(str.charAt(2));
-        System.out.println(queue);
-
-        queue.remove();
-        System.out.println(queue);
+        int n= treeMap.get("Hải")+1;
+        treeMap.put("Hải",n);
+        System.out.println(treeMap);
 
 
 
