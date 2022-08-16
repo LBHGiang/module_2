@@ -3,7 +3,6 @@ package bai_tap_lam_them.bai4_mvc_vehicle_management.controller;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Car;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Motorbike;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Truck;
-import bai_tap_lam_them.bai4_mvc_vehicle_management.model.Vehicle;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.service.ICarService;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.service.IMotorbikeService;
 import bai_tap_lam_them.bai4_mvc_vehicle_management.service.ITruckService;
@@ -15,16 +14,15 @@ import java.util.Scanner;
 
 public class VehicleController {
     private Scanner scanner = new Scanner(System.in);
-    public static boolean continueRunning;
     private int choose;
     public static boolean foundVehicle;
+
     private ITruckService iTruckService = new TruckService();
     private ICarService iCarService = new CarService();
     private IMotorbikeService iMotorbikeService = new MotorbikeService();
 
     public void menuManagement() {
-        continueRunning = true;
-        while (continueRunning) {
+        while (true) {
             System.out.println("----------------");
             System.out.println("CHƯƠNG TRÌNH QUẢN LÝ PHƯƠNG TIỆN GIAO THÔNG");
             System.out.println("1. Thêm mới phương tiện.");
@@ -79,8 +77,7 @@ public class VehicleController {
             case 4:
                 return;
             case 5:
-                continueRunning = false;
-                return;
+                System.exit(0);
             default:
                 System.out.println("Lựa chọn bạn nhập không đúng");
         }
@@ -109,8 +106,7 @@ public class VehicleController {
             case 4:
                 return;
             case 5:
-                continueRunning = false;
-                return;
+                System.exit(0);
             default:
                 System.out.println("Lựa chọn bạn nhập không đúng");
         }
