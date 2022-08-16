@@ -3,18 +3,22 @@ package ss12_java_collection_framework.exercise.count_numbers_occurrences_of_wor
 import java.util.*;
 
 public class CountByTreeMap {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Đếm số lần xuất hiện của từng từ trong chuỗi.
+     *
+     * @param string
+     */
+    public static void countNumbersOccurrencesOfWord(String string) {
         Map<String, Integer> count = new TreeMap<>();
         List<String> words;
 
-        System.out.println("Vui lòng nhập vào một chuỗi: ");
-        String string = scanner.nextLine();
         string = string.toLowerCase();
         words = Arrays.asList(string.split(" "));
 
         boolean isSpace;
         boolean isExist;
+        int newValue;
         for (String key : words) {
             isSpace = key.equals(" ");
             isExist = count.containsKey(key);
@@ -24,7 +28,8 @@ public class CountByTreeMap {
             if (!isExist) {
                 count.put(key, 1);
             } else {
-                count.put(key, count.get(key) + 1);
+                newValue = count.get(key) + 1;
+                count.put(key, newValue);
             }
         }
         for (Map.Entry<String, Integer> entry :
@@ -32,5 +37,14 @@ public class CountByTreeMap {
             System.out.printf("'%s' xuất hiện %d lần \n", entry.getKey(), entry.getValue());
 
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Vui lòng nhập vào một chuỗi: ");
+        String string = scanner.nextLine();
+
+        countNumbersOccurrencesOfWord(string);
+
     }
 }
