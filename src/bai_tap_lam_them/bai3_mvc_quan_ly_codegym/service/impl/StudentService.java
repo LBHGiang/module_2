@@ -134,7 +134,7 @@ public class StudentService implements IStudentService {
         } else {
             System.out.println("Kết quả tìm kiếm:");
             for (Student student :
-                    studentList) {
+                    foundStudent) {
                 System.out.println(student.toString());
             }
         }

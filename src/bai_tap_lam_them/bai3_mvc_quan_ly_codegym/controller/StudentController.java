@@ -54,9 +54,13 @@ public class StudentController {
         System.out.println("Vui lòng chọn cách tìm kiếm:");
         System.out.println("1. Tìm theo ID----- 2. Tìm theo tên");
         choice = Integer.parseInt(scanner.nextLine());
-        switch (choice){
-            case 1: studentService.findStudentByID();
-            case 2: studentService.findStudentByName();
+        switch (choice) {
+            case 1:
+                studentService.findStudentByID();
+                break;
+            case 2:
+                studentService.findStudentByName();
+                break;
             default:
                 System.out.println("Lựa chọn bạn nhập không đúng!");
         }
