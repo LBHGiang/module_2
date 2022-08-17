@@ -1,7 +1,7 @@
 package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model;
 
 public abstract class Person {
-    private int id;
+    private String id;
     private String name;
     private String dateOfBirth;
     private String gender;
@@ -9,23 +9,23 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(int id, String name) {
+    public Person(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Person(int id, String name, String dateOfBirth, String gender) {
+    public Person(String id, String name, String dateOfBirth, String gender) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

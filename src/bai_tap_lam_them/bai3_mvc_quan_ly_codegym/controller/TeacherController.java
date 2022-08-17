@@ -10,6 +10,7 @@ public class TeacherController {
     public static Scanner scanner = new Scanner(System.in);
     public static ITeacherService iTeacherService = new TeacherService();
     private static int choose;
+
     public static void teacherManage() {
         while (true) {
             System.out.println("---------------------------------");
@@ -18,8 +19,9 @@ public class TeacherController {
             System.out.println("2. Thêm mới giáo viên");
             System.out.println("3. Cập nhật thông tin giáo viên");
             System.out.println("4. Xóa giáo viên");
-            System.out.println("5. Trở lại CodeGym menu");
-            System.out.println("6. Thoát");
+            System.out.println("5. Tìm kiếm giáo viên");
+            System.out.println("6. Trở lại CodeGym menu");
+            System.out.println("7. Thoát");
             System.out.print("Mời bạn nhập chức năng 1->6: ");
             choose = Integer.parseInt(scanner.nextLine());
             switch (choose) {
@@ -38,6 +40,8 @@ public class TeacherController {
                 case 5:
                     return;
                 case 6:
+                    return;
+                case 7:
                     System.exit(0);
                 default:
                     System.out.println("Lựa chọn bạn nhập không đúng!");

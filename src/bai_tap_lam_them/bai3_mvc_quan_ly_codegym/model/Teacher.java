@@ -10,12 +10,12 @@ public class Teacher extends Person {
         this.speciality = speciality;
     }
 
-    public Teacher(int id, String name, String speciality) {
+    public Teacher(String id, String name, String speciality) {
         super(id, name);
         this.speciality = speciality;
     }
 
-    public Teacher(int id, String name, String dateOfBirth, String gender, String speciality) {
+    public Teacher(String id, String name, String dateOfBirth, String gender, String speciality) {
         super(id, name, dateOfBirth, gender);
         this.speciality = speciality;
     }

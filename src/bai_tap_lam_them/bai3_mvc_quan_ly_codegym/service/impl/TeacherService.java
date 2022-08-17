@@ -12,8 +12,8 @@ public class TeacherService implements ITeacherService {
     private static List<Teacher> teacherList = new ArrayList<>();
 
     static {
-        teacherList.add(new Teacher(1, "QuangNN", "3030", "Nam", "Intructor"));
-        teacherList.add(new Teacher(2, "HaiTT", "2313", "Nam", "Tutor"));
+        teacherList.add(new Teacher("1", "QuangNN", "3030", "Nam", "Intructor"));
+        teacherList.add(new Teacher("2", "HaiTT", "2313", "Nam", "Tutor"));
     }
 
     @Override
@@ -69,7 +69,7 @@ public class TeacherService implements ITeacherService {
 
             switch (choose) {
                 case 1:
-                    teacher.setId(Integer.parseInt(getEditInfo("ID")));
+                    teacher.setId(getEditInfo("ID"));
                     break;
                 case 2:
                     teacher.setName(getEditInfo("tên"));
@@ -99,7 +99,7 @@ public class TeacherService implements ITeacherService {
     public Teacher getInfoTeacher() {
         System.out.println("Vui lòng nhập thông tin cho giáo viên: ");
         System.out.print("ID = ");
-        int id = Integer.parseInt(scanner.nextLine());
+        String id = scanner.nextLine();
         System.out.print("Tên = ");
         String name = scanner.nextLine();
         System.out.print("Ngày sinh = ");
@@ -120,7 +120,7 @@ public class TeacherService implements ITeacherService {
         System.out.print("Mời bạn nhập ID của giáo viên cần " + taskName);
         int id = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < teacherList.size(); i++) {
-            if (teacherList.get(i).getId() == id) {
+            if (teacherList.get(i).getId().equals(id)) {
                 return teacherList.get(i);
             }
         }

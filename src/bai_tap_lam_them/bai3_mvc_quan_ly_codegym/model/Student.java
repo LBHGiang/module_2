@@ -12,13 +12,13 @@ public class Student extends Person {
         this.className = className;
     }
 
-    public Student(int id, String name, String dateOfBirth, String gender, double score, String className) {
+    public Student(String id, String name, String dateOfBirth, String gender, double score, String className) {
         super(id, name, dateOfBirth, gender);
         this.score = score;
         this.className = className;
     }
 
-    public Student(int id, String name, double score, String className) {
+    public Student(String id, String name, double score, String className) {
         super(id, name);
         this.score = score;
         this.className = className;
