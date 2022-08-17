@@ -31,15 +31,29 @@ public class ProductManager {
     }
 
     public Product getProductInfo() {
+        String id;
         System.out.println("Vui lòng nhập thông tin cho sản phẩm: ");
         System.out.print("ID = ");
-        String id = scanner.nextLine();
+        do {
+            id = scanner.nextLine();
+
+        } while (idIsExist(id));
         System.out.print("Tên = ");
         String name = scanner.nextLine();
         System.out.print("Giá = ");
         double price = Double.parseDouble(scanner.nextLine());
 
         return new Product(id, name, price);
+    }
+
+    private boolean idIsExist(String id) {
+        for (Product product :
+                productList) {
+            if (product.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeProduct() {

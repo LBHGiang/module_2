@@ -1,16 +1,14 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class Test {
     public static void main(String[] args) {
-        Map<String, Integer> treeMap = new TreeMap<>();
-        treeMap.put("Hải", 1);
-        treeMap.put("Trường", 2);
-        treeMap.put("Giang", 3);
-        treeMap.put("Tiến", 1);
+        List<String> tring = new ArrayList<>();
+        tring.add("Nam");
+        tring.add("Hải");
+        tring.add("Gia");
+        tring.add("Kha");
 
-        int n= treeMap.get("Hải")+1;
-        treeMap.put("Hải",n);
-        System.out.println(treeMap);
 
 
 

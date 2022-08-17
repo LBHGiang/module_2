@@ -26,21 +26,23 @@ public class MainController {
         }
 
         //Comparable
-//        Collections.sort(students);
-//        System.out.println("After");
-//        for (Student student :
-//                students) {
-//            System.out.println(student.toString());
-//        }
 
-        //Comparator
-        Comparator<Student> comparator = new AgeComparator();
-        students.sort(comparator);
+        students.sort(Comparator.reverseOrder());
         System.out.println("After");
         for (Student student :
                 students) {
             System.out.println(student.toString());
         }
+
+        //Comparator
+
+//        Comparator<Student> comparator = new AgeComparator();
+//        students.sort(comparator);
+//        System.out.println("After");
+//        for (Student student :
+//                students) {
+//            System.out.println(student.toString());
+//        }
 
     }
 }
