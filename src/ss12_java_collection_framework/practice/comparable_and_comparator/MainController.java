@@ -34,9 +34,9 @@ public class MainController {
             System.out.println(student.toString());
         }
 
-        //Comparator
+        //IntsArrayComparator
 
-//        Comparator<Student> comparator = new AgeComparator();
+//        IntsArrayComparator<Student> comparator = new AgeComparator();
 //        students.sort(comparator);
 //        System.out.println("After");
 //        for (Student student :
