@@ -1,9 +1,12 @@
 package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.impl;
 
+import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.SortByNameComparator;
+import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.SortByScoreComparator;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.IStudentService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,8 +16,8 @@ public class StudentService implements IStudentService {
 
     static {
         studentList.add(new Student("1", "Giang", "03/03/19", "Nam", 9, "C05"));
-        studentList.add(new Student("2", "Hải", "02/02/19", "Nam", 8, "C06"));
-        studentList.add(new Student("3", "Nam", "03/03/13", "Nữ", 8, "C06"));
+        studentList.add(new Student("2", "Gia", "02/02/19", "Nam", 7, "C06"));
+        studentList.add(new Student("3", "Gian", "03/03/13", "Nữ", 8, "C06"));
     }
 
 
@@ -140,6 +143,33 @@ public class StudentService implements IStudentService {
         }
     }
 
+    @Override
+    public void sortStudentByScore() {
+        Collections.sort(studentList, new SortByScoreComparator());
+        displayAllStudent();
+    }
+
+    @Override
+    public void sortStudentByName() {
+        Collections.sort(studentList, new SortByNameComparator());
+        displayAllStudent();
+    }
+
+    @Override
+    public void sortStudentByHand() {
+
+        for (int i = 1; i < studentList.size(); i++) {
+
+            Student temp = studentList.get(i);
+            int j;
+            for (j = i - 1; j >= 0 && studentList.get(j).getName().compareTo(temp.getName()) > 0; j--) {
+                studentList.set(j + 1, studentList.get(j));
+            }
+            studentList.set(j + 1, temp);
+        }
+        displayAllStudent();
+    }
+
     public Student getInfoStudent() {
         System.out.println("Vui lòng nhập thông tin cho sinh viên: ");
         System.out.print("ID = ");
@@ -173,4 +203,6 @@ public class StudentService implements IStudentService {
         }
         return null;
     }
+
+
 }

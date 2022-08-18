@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Test2 {
     public static void main(String[] args) {
@@ -40,4 +41,5 @@ public class Test2 {
  * 	T(n) = O(n)                                                                   *
  *  Độ phức tạp của bài toán là O(n)                                           	  *
  *********************************************************************************/
+
 }

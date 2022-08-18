@@ -19,8 +19,9 @@ public class StudentController {
             System.out.println("3. Cập nhật thông tin học sinh");
             System.out.println("4. Xóa học sinh");
             System.out.println("5. Tìm kiếm học sinh");
-            System.out.println("6. Trở lại CodeGym menu");
-            System.out.println("7. Thoát");
+            System.out.println("6. Sắp xếp học sinh");
+            System.out.println("7. Trở lại CodeGym menu");
+            System.out.println("8. Thoát");
             System.out.print("Mời bạn nhập chức năng 1->6: ");
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -40,12 +41,36 @@ public class StudentController {
                     findStudent();
                     break;
                 case 6:
-                    return;
+                    sortStudentList();
+                    break;
                 case 7:
+                    return;
+                case 8:
                     System.exit(0);
                 default:
                     System.out.println("Lựa chọn bạn nhập không đúng!");
             }
+        }
+    }
+
+    private void sortStudentList() {
+        System.out.println("----------------------------");
+        System.out.println("Vui lòng chọn cách sắp xếp:");
+        System.out.println("1. Sắp xếp theo tên----- 2. Sắp xếp theo điểm");
+        System.out.println("3. Sắp xếp theo tên bằng tay");
+        choice = Integer.parseInt(scanner.nextLine());
+        switch (choice) {
+            case 1:
+                studentService.sortStudentByName();
+                break;
+            case 2:
+                studentService.sortStudentByScore();
+                break;
+            case 3:
+                studentService.sortStudentByHand();
+                break;
+            default:
+                System.out.println("Lựa chọn bạn nhập không đúng!");
         }
     }
 

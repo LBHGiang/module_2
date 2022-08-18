@@ -12,4 +12,10 @@ public interface IStudentService {
     void findStudentByID();
 
     void findStudentByName();
+
+    void sortStudentByScore();
+
+    void sortStudentByName();
+
+    void sortStudentByHand();
 }
