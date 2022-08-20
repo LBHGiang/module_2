@@ -1,8 +1,10 @@
+package ss13_search_algorithm.exercise.find_continous_string;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Test2 {
+public class BaiMauTimDayTangDanLienTiep {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         LinkedList<Character> max = new LinkedList<>();
