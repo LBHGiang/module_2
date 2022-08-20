@@ -4,6 +4,8 @@ import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.SortByNameComparator;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.SortByScoreComparator;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.IStudentService;
+import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils.IdExistedException;
+import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils.InvalidNumberException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -172,20 +174,51 @@ public class StudentService implements IStudentService {
 
     public Student getInfoStudent() {
         System.out.println("Vui lòng nhập thông tin cho sinh viên: ");
-        System.out.print("ID = ");
-        String id = scanner.nextLine();
+
+        String id;
+        while (true) {
+            try {
+                System.out.print("ID = ");
+                id = scanner.nextLine();
+                checkExistID(id);
+                break;
+            } catch (IdExistedException e) {
+                e.printStackTrace();
+            }
+        }
+
         System.out.print("Tên = ");
         String name = scanner.nextLine();
         System.out.print("Ngày sinh = ");
         String dateOfBirth = scanner.nextLine();
         System.out.print("Giới tính = ");
         String gender = scanner.nextLine();
-        System.out.print("Điểm số = ");
-        int score = Integer.parseInt(scanner.nextLine());
+
+        double score;
+        while (true) {
+            try {
+                System.out.print("Điểm số = ");
+                score = Integer.parseInt(scanner.nextLine());
+                checkInvalidScore(score);
+                break;
+            } catch (InvalidNumberException e) {
+                e.printStackTrace();
+            }
+        }
+
         System.out.print("Tên lớp = ");
         String className = scanner.nextLine();
 
         return new Student(id, name, dateOfBirth, gender, score, className);
+    }
+
+    private void checkExistID(String id) throws IdExistedException {
+        for (Student student : studentList
+        ) {
+            if (student.getId().equals(id)) {
+                throw new IdExistedException("Id đã tồn tại!");
+            }
+        }
     }
 
     public String getEditInfo(String editContent) {
@@ -204,5 +237,10 @@ public class StudentService implements IStudentService {
         return null;
     }
 
+    public void checkInvalidScore(double score) throws InvalidNumberException {
+        if (score < 0 || score > 10) {
+            throw new InvalidNumberException("Điểm nhập vào không hợp lệ: Điểm > 0 và Điểm <= 10");
+        }
+    }
 
 }
