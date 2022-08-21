@@ -1,4 +1,4 @@
-package group_exercise;
+package bai_tap_lam_them.group_exercise;
 
 public class PrintHollowRhombus {
     public static void main(String[] args) {

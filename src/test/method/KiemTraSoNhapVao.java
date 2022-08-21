@@ -9,14 +9,19 @@ public class KiemTraSoNhapVao {
         amount = inputNumber("Amount");
     }
 
+    /**
+     * Hàm nhập số với điều kiện cho trước. > 0 và <= 20
+     * @param nameOfVariable Tên biến VD: "Chiều dài mảng"
+     * @return Một số nguyên
+     */
     public static int inputNumber(String nameOfVariable) {
         Scanner scanner = new Scanner(System.in);
 
         int number;
         boolean numberIsInvalid;
 
-        System.out.print("Enter " + nameOfVariable);
         do {
+            System.out.print("Enter " + nameOfVariable);
             number = Integer.parseInt(scanner.nextLine());
             numberIsInvalid = number < 0 || number > 20;
 
