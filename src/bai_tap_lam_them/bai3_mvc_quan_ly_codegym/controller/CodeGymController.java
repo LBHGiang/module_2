@@ -3,9 +3,9 @@ package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.controller;
 import java.util.Scanner;
 
 public class CodeGymController {
-    private Scanner scanner = new Scanner(System.in);
-    private StudentController studentController = new StudentController();
-    private TeacherController teacherController = new TeacherController();
+    private final Scanner scanner = new Scanner(System.in);
+    private final StudentController studentController = new StudentController();
+    private final TeacherController teacherController = new TeacherController();
 
     public void menuManagement() {
         while (true) {
@@ -15,15 +15,16 @@ public class CodeGymController {
             System.out.println("2. Quản lý Giáo viên");
             System.out.println("3. Exit");
             System.out.print("Mời bạn chọn tính năng 1->3 : ");
-            int choose = Integer.parseInt(scanner.nextLine());
+            String choose = scanner.nextLine();
             switch (choose) {
-                case 1:
+                case "1":
                     studentController.studentManage();
                     break;
-                case 2:
+                case "2":
                     teacherController.teacherManage();
                     break;
-                case 3:
+                case "3":
+                    System.out.println("Cám ơn bạn đã sử dụng dịch vụ của chúng tôi.");
                     return;
                 default:
                     System.out.println("Lựa chọn bạn nhập không đúng!");

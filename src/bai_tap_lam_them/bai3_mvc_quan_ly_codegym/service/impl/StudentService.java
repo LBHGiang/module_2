@@ -6,11 +6,9 @@ import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.IStudentService;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils.IdExistedException;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils.InvalidNumberException;
+import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils.InvalidStringException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class StudentService implements IStudentService {
     public Scanner scanner = new Scanner(System.in);
@@ -40,8 +38,12 @@ public class StudentService implements IStudentService {
 
     @Override
     public void editStudent() {
-        Student student = findStudentByID("chỉnh sửa");
-        int choose;
+        Student student = findStudentByIdToTask("chỉnh sửa");
+        if (student == null) {
+            System.out.println("ID không tồn tại trong danh sách!");
+            return;
+        }
+        String choose;
         do {
             System.out.println("---------------------------------------------");
             System.out.println("Sinh viên cần chỉnh sửa:");
@@ -55,35 +57,38 @@ public class StudentService implements IStudentService {
             System.out.println("6. Tên lớp");
             System.out.println("7. Thoát");
             System.out.println("Chọn nội dung cần chỉnh sửa: 1 -> 7");
-            choose = Integer.parseInt(scanner.nextLine());
+            choose = scanner.nextLine();
 
             switch (choose) {
-                case 1:
-                    student.setId(getEditInfo("ID"));
+                case "1":
+                    student.setId(getID());
                     break;
-                case 2:
-                    student.setName(getEditInfo("tên"));
+                case "2":
+                    student.setName(getInfo("tên"));
                     break;
-                case 3:
-                    student.setDateOfBirth(getEditInfo("ngày sinh"));
+                case "3":
+                    student.setDateOfBirth(getInfo("ngày sinh"));
                     break;
-                case 4:
-                    student.setGender(getEditInfo("giới tính"));
+                case "4":
+                    student.setGender(getInfo("giới tính"));
                     break;
-                case 5:
-                    student.setScore(Integer.parseInt(getEditInfo("điểm")));
+                case "5":
+                    student.setScore(Integer.parseInt(getInfo("điểm")));
                     break;
-                case 6:
-                    student.setClassName(getEditInfo("tên lớp"));
+                case "6":
+                    student.setClassName(getInfo("tên lớp"));
                     break;
-                case 7:
+                case "7":
+                    return;
+                default:
+                    System.out.println("Nội dung bạn vừa chọn không có trong menu");
                     return;
             }
             System.out.println("Chỉnh sửa thành công!");
             System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
-            System.out.println("1- Có ------------- 2- Hoàn tất");
-            choose = Integer.parseInt(scanner.nextLine());
-            if (choose != 1) {
+            System.out.println("1- Có ------------- 2- Hoàn tất, quay trở lại.");
+            choose = scanner.nextLine();
+            if (!choose.equals("1")) {
                 return;
             }
         } while (true);
@@ -91,7 +96,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void removeStudent() {
-        Student student = findStudentByID("xóa");
+        Student student = findStudentByIdToTask("xóa");
         if (student == null) {
             System.out.println("ID không tồn tại trong danh sách!");
             return;
@@ -99,8 +104,8 @@ public class StudentService implements IStudentService {
         System.out.println("Bạn có chắc chắn xóa sinh viên này không?");
         System.out.println(student.toString());
         System.out.println("1- Có -----------2- Không");
-        int choose = Integer.parseInt(scanner.nextLine());
-        if (choose == 1) {
+        String choose = scanner.nextLine();
+        if (choose.equals("1")) {
             studentList.remove(student);
             System.out.println("Xóa sinh viên thành công");
         } else {
@@ -110,8 +115,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void findStudentByID() {
-        System.out.println("Mời bạn nhập chính xác ID của HS");
-        String id = scanner.nextLine();
+        String id = getInfo("ID");
         for (Student student :
                 studentList) {
             if (student.getId().equals(id)) {
@@ -126,8 +130,7 @@ public class StudentService implements IStudentService {
     @Override
     public void findStudentByName() {
         List<Student> foundStudent = new ArrayList<>();
-        System.out.println("Mời bạn nhập tên của Học sinh");
-        String name = scanner.nextLine();
+        String name = getInfo("Tên");
         for (Student student :
                 studentList) {
             if (student.getName().contains(name)) {
@@ -147,13 +150,13 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sortStudentByScore() {
-        Collections.sort(studentList, new SortByScoreComparator());
+        studentList.sort(new SortByScoreComparator());
         displayAllStudent();
     }
 
     @Override
     public void sortStudentByName() {
-        Collections.sort(studentList, new SortByNameComparator());
+        studentList.sort(new SortByNameComparator());
         displayAllStudent();
     }
 
@@ -174,40 +177,12 @@ public class StudentService implements IStudentService {
 
     public Student getInfoStudent() {
         System.out.println("Vui lòng nhập thông tin cho sinh viên: ");
-
-        String id;
-        while (true) {
-            try {
-                System.out.print("ID = ");
-                id = scanner.nextLine();
-                checkExistID(id);
-                break;
-            } catch (IdExistedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        System.out.print("Tên = ");
-        String name = scanner.nextLine();
-        System.out.print("Ngày sinh = ");
-        String dateOfBirth = scanner.nextLine();
-        System.out.print("Giới tính = ");
-        String gender = scanner.nextLine();
-
-        double score;
-        while (true) {
-            try {
-                System.out.print("Điểm số = ");
-                score = Integer.parseInt(scanner.nextLine());
-                checkInvalidScore(score);
-                break;
-            } catch (InvalidNumberException e) {
-                e.printStackTrace();
-            }
-        }
-
-        System.out.print("Tên lớp = ");
-        String className = scanner.nextLine();
+        String id = getID();
+        String name = getInfo("Tên");
+        String dateOfBirth = getInfo("Ngày sinh");
+        String gender = getInfo("Giới tính");
+        double score = getScore();
+        String className = getInfo("Tên lớp");
 
         return new Student(id, name, dateOfBirth, gender, score, className);
     }
@@ -216,22 +191,60 @@ public class StudentService implements IStudentService {
         for (Student student : studentList
         ) {
             if (student.getId().equals(id)) {
-                throw new IdExistedException("Id đã tồn tại!");
+                throw new IdExistedException("Id đã tồn tại! Vui lòng nhập lại.");
             }
         }
     }
 
-    public String getEditInfo(String editContent) {
-        System.out.print("Vui lòng nhập " + editContent + " mới: ");
-        return scanner.nextLine();
+    public double getScore(){
+        double score;
+        while (true)
+            try {
+                score = Double.parseDouble(getInfo("Score"));
+                checkInvalidScore(score);
+                break;
+            } catch (InvalidNumberException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e){
+                System.out.println("Điểm phải là số thực! Vui lòng nhập lại!");
+            }
+        return score;
     }
 
-    public Student findStudentByID(String taskName) {
-        System.out.print("Vui lòng nhập ID của Học sinh cần " + taskName);
-        int id = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < studentList.size(); i++) {
-            if (studentList.get(i).getId().equals(id)) {
-                return studentList.get(i);
+    public String getID() {
+        String id;
+        while (true)
+            try {
+                id = getInfo("ID");
+                checkExistID(id);
+                break;
+            } catch (IdExistedException e) {
+                System.out.println(e.getMessage());
+            }
+        return id;
+    }
+
+    public String getInfo(String infoName) {
+        String input;
+        while (true) {
+            try {
+                System.out.print("Vui lòng nhập " + infoName + ": ");
+                input = scanner.nextLine();
+                checkInvalidString(input);
+                break;
+            } catch (InvalidStringException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return input;
+    }
+
+    public Student findStudentByIdToTask(String taskName) {
+        String id = getInfo("ID để "+taskName);
+        for (Student student : studentList) {
+            if (student.getId().equals(id)) {
+                return student;
             }
         }
         return null;
@@ -240,6 +253,12 @@ public class StudentService implements IStudentService {
     public void checkInvalidScore(double score) throws InvalidNumberException {
         if (score < 0 || score > 10) {
             throw new InvalidNumberException("Điểm nhập vào không hợp lệ: Điểm > 0 và Điểm <= 10");
+        }
+    }
+
+    public void checkInvalidString(String str) throws InvalidStringException {
+        if (str.equals("")) {
+            throw new InvalidStringException("Vui lòng nhập dữ liệu vào!");
         }
     }
 

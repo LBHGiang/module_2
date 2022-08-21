@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class StudentController {
     private Scanner scanner = new Scanner(System.in);
     private IStudentService studentService = new StudentService();
-    private static int choice;
+    private static String choice;
 
     public void studentManage() {
         while (true) {
@@ -23,29 +23,29 @@ public class StudentController {
             System.out.println("7. Trở lại CodeGym menu");
             System.out.println("8. Thoát");
             System.out.print("Mời bạn nhập chức năng 1->6: ");
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = scanner.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     studentService.displayAllStudent();
                     break;
-                case 2:
+                case "2":
                     studentService.addStudent();
                     break;
-                case 3:
+                case "3":
                     studentService.editStudent();
                     break;
-                case 4:
+                case "4":
                     studentService.removeStudent();
                     break;
-                case 5:
+                case "5":
                     findStudent();
                     break;
-                case 6:
+                case "6":
                     sortStudentList();
                     break;
-                case 7:
+                case "7":
                     return;
-                case 8:
+                case "8":
                     System.exit(0);
                 default:
                     System.out.println("Lựa chọn bạn nhập không đúng!");
@@ -58,15 +58,15 @@ public class StudentController {
         System.out.println("Vui lòng chọn cách sắp xếp:");
         System.out.println("1. Sắp xếp theo tên----- 2. Sắp xếp theo điểm");
         System.out.println("3. Sắp xếp theo tên bằng tay");
-        choice = Integer.parseInt(scanner.nextLine());
+        choice = scanner.nextLine();
         switch (choice) {
-            case 1:
+            case "1":
                 studentService.sortStudentByName();
                 break;
-            case 2:
+            case "2":
                 studentService.sortStudentByScore();
                 break;
-            case 3:
+            case "3":
                 studentService.sortStudentByHand();
                 break;
             default:
@@ -78,12 +78,12 @@ public class StudentController {
         System.out.println("----------------------------");
         System.out.println("Vui lòng chọn cách tìm kiếm:");
         System.out.println("1. Tìm theo ID----- 2. Tìm theo tên");
-        choice = Integer.parseInt(scanner.nextLine());
+        choice = scanner.nextLine();
         switch (choice) {
-            case 1:
+            case "1":
                 studentService.findStudentByID();
                 break;
-            case 2:
+            case "2":
                 studentService.findStudentByName();
                 break;
             default:
