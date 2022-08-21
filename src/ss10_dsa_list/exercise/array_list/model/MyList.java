@@ -1,7 +1,5 @@
 package ss10_dsa_list.exercise.array_list.model;
 
-import java.util.Arrays;
-
 public class MyList<E> {
     private int size = 0;
     static final int DEFAULT_CAPACITY = 10;

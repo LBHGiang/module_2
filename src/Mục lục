@@ -1,0 +1,45 @@
+Mục Lục bài tập
+
+- ss2: Vòng lặp
+    BT: Số nguyên tố
+    TH: Ước chung lớn nhất
+- ss3: Các thao tác với Mảng
+- ss4:
+    TH: Lớp chữ nhật
+    BT1: Cái quạt Fan
+    BT2: PT bậc 2
+    BT3: Đồng hồ bấm giây
+- ss6:
+    BT1: Kế thừa hình tròn, hình trụ
+    BT2: Kế thừa 2D, 3D
+    BT3: Point và moveable point (return this)
+- ss7: AbstractClass Shape và interface Resizeable, Colorable
+- ss8: Đọc điểm game tennis
+- ss11:
+    BT: Chuyển thập phân sang nhị phân
+    BT: Đảo ngược mảng dùng stack
+- ss12: Collection
+    TH1: Comparable sắp xếp theo tên - Comparator sắp xếp theo tuổi.
+    BT1: Đếm số lần xuất hiện của từ trong chuỗi dùng TreeMap
+    BT2: Quản lý sản phẩm Produce dùng ArrayList
+- ss13: Search
+    TH: BinareSearch không dùng đệ quy
+    BT1: BinarySearch dùng đệ quy
+    BT2: Tìm chuỗi tăng dần dài nhất.
+    BT3: Tìm chuỗi tăng dần liên tiếp dài nhất.
+- ss14: Sort
+    TH1: Bubble sort
+    TH2: Selection sort
+    BT1: Insertion sort
+- ss15: Exception
+    BT: Kiểm tra tam giác dùng exception.
+
+- test.method:
+
+    + method:   Năm nhuận + Số ngày trong tháng
+                Hàm nhập số với điều kiện
+                Hàm nhập xuất mảng 2 chiều
+                Nhập phần tử cho mảng 1 chiều
+                Hàm đảo ngược mảng số nguyên
+                Tìm max mảng 2 chiều
+    + ngoại lệ: Nhập số với điều kiện sử dụng ngoại lệ

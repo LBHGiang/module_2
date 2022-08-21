@@ -1,4 +1,4 @@
-package ngoai_le.kiem_tra_so_nhap_vao;
+package test.ngoai_le.kiem_tra_so_nhap_vao;
 
 import java.util.Scanner;
 

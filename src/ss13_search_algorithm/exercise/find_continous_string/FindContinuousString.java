@@ -13,7 +13,7 @@ public class FindContinuousString {
      * @return trả về giá trị của entry cuối cùng trong treemap (key lớn nhất)
      */
     public static String findAscendingContinuousString(String string) {
-        Map<Integer, String> stringMap = new TreeMap<>();
+        TreeMap<Integer, String> stringMap = new TreeMap<>();
 
         String newString;
         char last;
@@ -38,7 +38,7 @@ public class FindContinuousString {
                 stringMap.put(key, value);
             }
         }
-        return ((TreeMap<Integer, String>) stringMap).lastEntry().getValue();
+        return stringMap.lastEntry().getValue();
 
     }
 }

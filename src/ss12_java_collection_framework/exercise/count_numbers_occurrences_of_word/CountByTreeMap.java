@@ -18,7 +18,6 @@ public class CountByTreeMap {
 
         boolean isSpace;
         boolean isExist;
-        int newValue;
         for (String key : words) {
             isSpace = key.equals(" ");
             isExist = count.containsKey(key);
@@ -28,8 +27,7 @@ public class CountByTreeMap {
             if (!isExist) {
                 count.put(key, 1);
             } else {
-                newValue = count.get(key) + 1;
-                count.put(key, newValue);
+                count.put(key, count.get(key) + 1);
             }
         }
         for (Map.Entry<String, Integer> entry :

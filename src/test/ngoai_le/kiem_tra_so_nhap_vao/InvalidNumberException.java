@@ -1,6 +1,4 @@
-package ngoai_le.kiem_tra_so_nhap_vao;
-
-import java.util.Scanner;
+package test.ngoai_le.kiem_tra_so_nhap_vao;
 
 public class InvalidNumberException extends Exception {
 
