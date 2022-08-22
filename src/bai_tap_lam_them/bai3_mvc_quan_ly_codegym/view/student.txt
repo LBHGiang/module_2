@@ -1,0 +1,5 @@
+id,name,dateOfBirth,gender,score,className
+A2,Trường,05/05,Nam,8.0,C06
+A1,Giang,03/03,Nam,6.0,C06
+A4,Hải,03/03,Nam,5.0,C06
+A3,Hoàng,03/03,Nam,3.0,C06

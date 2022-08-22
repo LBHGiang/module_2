@@ -1,21 +1,23 @@
 package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service;
 
+import java.io.IOException;
+
 public interface IStudentService {
-    void displayAllStudent();
+    void displayAllStudent() throws IOException;
 
-    void addStudent();
+    void addStudent() throws IOException;
 
-    void editStudent();
+    void editStudent() throws IOException;
 
-    void removeStudent();
+    void removeStudent() throws IOException;
 
-    void findStudentByID();
+    void findStudentByID() throws IOException;
 
-    void findStudentByName();
+    void findStudentByName() throws IOException;
 
-    void sortStudentByScore();
+    void sortStudentByScore() throws IOException;
 
-    void sortStudentByName();
+    void sortStudentByName() throws IOException;
 
-    void sortStudentByHand();
+    void sortStudentByHand() throws IOException;
 }

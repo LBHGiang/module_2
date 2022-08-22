@@ -3,6 +3,7 @@ package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.controller;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.IStudentService;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.impl.StudentService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentController {
@@ -10,7 +11,7 @@ public class StudentController {
     private IStudentService studentService = new StudentService();
     private static String choice;
 
-    public void studentManage() {
+    public void studentManage() throws IOException {
         while (true) {
             System.out.println("---------------------------------------------");
             System.out.println("Chào mừng bạn đến với CodeGym - Student");
@@ -22,7 +23,7 @@ public class StudentController {
             System.out.println("6. Sắp xếp học sinh");
             System.out.println("7. Trở lại CodeGym menu");
             System.out.println("8. Thoát");
-            System.out.print("Mời bạn nhập chức năng 1->6: ");
+            System.out.print("Mời bạn nhập chức năng 1->8: ");
             choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -53,7 +54,7 @@ public class StudentController {
         }
     }
 
-    private void sortStudentList() {
+    private void sortStudentList() throws IOException {
         System.out.println("----------------------------");
         System.out.println("Vui lòng chọn cách sắp xếp:");
         System.out.println("1. Sắp xếp theo tên----- 2. Sắp xếp theo điểm");
@@ -74,7 +75,7 @@ public class StudentController {
         }
     }
 
-    private void findStudent() {
+    private void findStudent() throws IOException {
         System.out.println("----------------------------");
         System.out.println("Vui lòng chọn cách tìm kiếm:");
         System.out.println("1. Tìm theo ID----- 2. Tìm theo tên");

@@ -1,5 +1,6 @@
 package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.controller;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CodeGymController {
@@ -18,7 +19,16 @@ public class CodeGymController {
             String choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-                    studentController.studentManage();
+
+                    while (true) {
+                        try {
+                            studentController.studentManage();
+                            break;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     break;
                 case "2":
                     teacherController.teacherManage();

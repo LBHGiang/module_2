@@ -42,9 +42,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student: " + super.toString() +
-                ", score=" + score +
-                ", className='" + className + '\'' + ".";
+        return String.format("%s,%s,%s", super.toString(), score, className);
     }
 }
 
