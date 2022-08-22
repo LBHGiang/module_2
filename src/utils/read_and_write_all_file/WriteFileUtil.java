@@ -1,4 +1,4 @@
-package utils.read_and_write_file;
+package utils.read_and_write_all_file;
 
 import java.io.BufferedWriter;
 import java.io.File;

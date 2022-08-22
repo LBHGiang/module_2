@@ -11,7 +11,7 @@ import java.util.*;
 
 public class StudentService implements IStudentService {
     public Scanner scanner = new Scanner(System.in);
-    private static String path = "src\\bai_tap_lam_them\\bai3_mvc_quan_ly_codegym\\view\\student.txt";
+    private static final String path = "src/bai_tap_lam_them/bai3_mvc_quan_ly_codegym/data/student.txt";
     ReadStudentFile readStudentFile = new ReadStudentFile();
     WriteStudentFile writeStudentFile = new WriteStudentFile();
 
@@ -31,7 +31,6 @@ public class StudentService implements IStudentService {
 
         if (studentList.size() == 0) {
             System.out.println("Danh sách rỗng");
-            return;
         }
         for (Student student : studentList
         ) {
@@ -43,10 +42,9 @@ public class StudentService implements IStudentService {
     public void addStudent() throws IOException {
         studentList = readStudentFile.readStudentFile(path);
         studentList.add(getInfoStudent());
+        writeStudentFile.writeStudentFile(path, studentList);
         System.out.println("Thêm mới học sinh thành công!");
         System.out.println("----------Danh sách sinh viên------------");
-
-        writeStudentFile.writeStudentFile(path, studentList);
         displayAllStudent();
     }
 
@@ -179,7 +177,6 @@ public class StudentService implements IStudentService {
         studentList.sort(new SortByScoreComparator());
         writeStudentFile.writeStudentFile(path, studentList);
         displayAllStudent();
-
     }
 
     @Override

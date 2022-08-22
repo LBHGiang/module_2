@@ -1,0 +1,4 @@
+Xin chào.
+Đây là file nguồn.
+
+File này có 48 ký tự.

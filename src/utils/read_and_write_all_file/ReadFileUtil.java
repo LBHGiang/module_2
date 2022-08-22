@@ -1,6 +1,9 @@
-package utils.read_and_write_file;
+package utils.read_and_write_all_file;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +14,7 @@ public class ReadFileUtil {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         List<String> stringList = new ArrayList<>();
-        bufferedReader.readLine();
+//        bufferedReader.readLine();
 
         String line;
         while ((line = bufferedReader.readLine()) != null) {

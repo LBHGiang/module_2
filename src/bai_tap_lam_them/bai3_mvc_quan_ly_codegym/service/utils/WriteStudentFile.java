@@ -1,7 +1,7 @@
 package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils;
 
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
-import utils.read_and_write_file.WriteFileUtil;
+import utils.read_and_write_file_skip_line1.WriteFileUtil;
 
 import java.io.IOException;
 import java.util.List;
