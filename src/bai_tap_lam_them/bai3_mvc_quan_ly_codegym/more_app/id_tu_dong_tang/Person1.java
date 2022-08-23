@@ -1,31 +1,46 @@
-package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model;
+package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.more_app.id_tu_dong_tang;
 
-public abstract class Person {
-    private String id;
+public class Person1 {
+    /**
+     * Thêm biến count dùng chung.
+     * Trong phần tạo đối tượng dùng constructor không có id ++count và this.id=count
+     * Trong phần đọc file dùng constructor có id.
+     * Khi ghi ra file cần ghi thêm count ra file khác để lưu lại id cuối cùng.
+     */
+    private static int count;
+    private int id;
     private String name;
     private String dateOfBirth;
     private String gender;
 
-    public Person() {
+    public Person1() {
     }
 
-    public Person(String id, String name) {
+    public Person1(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Person(String id, String name, String dateOfBirth, String gender) {
+    public Person1(String name, String dateOfBirth, String gender) {
+        ++count;
+        this.id = count;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+    }
+
+    public Person1(int id, String name, String dateOfBirth, String gender) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -67,4 +82,3 @@ public abstract class Person {
         return String.format("%s,%s,%s,%s", id, name, dateOfBirth, gender);
     }
 }
-

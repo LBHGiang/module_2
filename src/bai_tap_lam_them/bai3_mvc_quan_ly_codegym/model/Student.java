@@ -40,9 +40,18 @@ public class Student extends Person {
         this.className = className;
     }
 
+
     @Override
     public String toString() {
-        return String.format("%s,%s,%s", super.toString(), score, className);
+        return "Student{" + super.toString() +
+                " ,score=" + score +
+                ", className='" + className + '\'' +
+                '}';
+    }
+
+    @Override
+    public String toStringOfFile() {
+        return String.format("%s,%s,%s", super.toStringOfFile(), score, className);
     }
 }
 

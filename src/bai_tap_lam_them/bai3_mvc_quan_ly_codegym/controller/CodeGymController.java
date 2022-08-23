@@ -19,16 +19,7 @@ public class CodeGymController {
             String choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-
-                    while (true) {
-                        try {
-                            studentController.studentManage();
-                            break;
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
+                    studentController.studentManage();
                     break;
                 case "2":
                     teacherController.teacherManage();

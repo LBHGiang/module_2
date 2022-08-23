@@ -11,7 +11,7 @@ public class StudentController {
     private IStudentService studentService = new StudentService();
     private static String choice;
 
-    public void studentManage() throws IOException {
+    public void studentManage(){
         while (true) {
             System.out.println("---------------------------------------------");
             System.out.println("Chào mừng bạn đến với CodeGym - Student");
@@ -54,7 +54,7 @@ public class StudentController {
         }
     }
 
-    private void sortStudentList() throws IOException {
+    private void sortStudentList(){
         System.out.println("----------------------------");
         System.out.println("Vui lòng chọn cách sắp xếp:");
         System.out.println("1. Sắp xếp theo tên----- 2. Sắp xếp theo điểm");
@@ -75,7 +75,7 @@ public class StudentController {
         }
     }
 
-    private void findStudent() throws IOException {
+    private void findStudent(){
         System.out.println("----------------------------");
         System.out.println("Vui lòng chọn cách tìm kiếm:");
         System.out.println("1. Tìm theo ID----- 2. Tìm theo tên");

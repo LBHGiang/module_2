@@ -6,28 +6,25 @@ import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.IStudentService;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.utils.*;
 
-import java.io.IOException;
-import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 
 public class StudentService implements IStudentService {
     public Scanner scanner = new Scanner(System.in);
-    private static final String path = "src/bai_tap_lam_them/bai3_mvc_quan_ly_codegym/data/student.txt";
+    private static final String PATH = "src/bai_tap_lam_them/bai3_mvc_quan_ly_codegym/data/student.txt";
     ReadStudentFile readStudentFile = new ReadStudentFile();
     WriteStudentFile writeStudentFile = new WriteStudentFile();
 
     private static List<Student> studentList;
 
-//    static {
-//        studentList.add(new Student("1", "Giang", "03/03/19", "Nam", 9, "C05"));
-//        studentList.add(new Student("2", "Gia", "02/02/19", "Nam", 7, "C06"));
-//        studentList.add(new Student("3", "Gian", "03/03/13", "Nữ", 8, "C06"));
-//    }
-
-
     @Override
-    public void displayAllStudent() throws IOException {
+    public void displayAllStudent() {
         System.out.println("----------Danh sách sinh viên------------");
-        studentList = readStudentFile.readStudentFile(path);
+        studentList = readStudentFile.readStudentFile(PATH);
 
         if (studentList.size() == 0) {
             System.out.println("Danh sách rỗng");
@@ -39,18 +36,18 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void addStudent() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void addStudent() {
+        studentList = readStudentFile.readStudentFile(PATH);
         studentList.add(getInfoStudent());
-        writeStudentFile.writeStudentFile(path, studentList);
+        writeStudentFile.writeStudentFile(PATH, studentList);
         System.out.println("Thêm mới học sinh thành công!");
         System.out.println("----------Danh sách sinh viên------------");
         displayAllStudent();
     }
 
     @Override
-    public void editStudent() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void editStudent() {
+        studentList = readStudentFile.readStudentFile(PATH);
 
         Student student = findStudentByIdToTask("chỉnh sửa");
         if (student == null) {
@@ -99,7 +96,7 @@ public class StudentService implements IStudentService {
                     return;
             }
             System.out.println("Chỉnh sửa thành công!");
-            writeStudentFile.writeStudentFile(path, studentList);
+            writeStudentFile.writeStudentFile(PATH, studentList);
             System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
             System.out.println("1- Có ------------- 2- Hoàn tất, quay trở lại.");
             choose = scanner.nextLine();
@@ -113,8 +110,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void removeStudent() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void removeStudent() {
+        studentList = readStudentFile.readStudentFile(PATH);
         Student student = findStudentByIdToTask("xóa");
         if (student == null) {
             System.out.println("ID không tồn tại trong danh sách!");
@@ -127,7 +124,7 @@ public class StudentService implements IStudentService {
         if (choose.equals("1")) {
             studentList.remove(student);
             System.out.println("Xóa sinh viên thành công");
-            writeStudentFile.writeStudentFile(path, studentList);
+            writeStudentFile.writeStudentFile(PATH, studentList);
         } else {
             System.out.println("Xóa sinh viên không thành công");
         }
@@ -135,8 +132,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void findStudentByID() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void findStudentByID() {
+        studentList = readStudentFile.readStudentFile(PATH);
         String id = getInfo("ID");
         for (Student student :
                 studentList) {
@@ -150,8 +147,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void findStudentByName() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void findStudentByName() {
+        studentList = readStudentFile.readStudentFile(PATH);
         List<Student> foundStudent = new ArrayList<>();
         String name = getInfo("Tên");
         for (Student student :
@@ -172,24 +169,24 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void sortStudentByScore() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void sortStudentByScore() {
+        studentList = readStudentFile.readStudentFile(PATH);
         studentList.sort(new SortByScoreComparator());
-        writeStudentFile.writeStudentFile(path, studentList);
+        writeStudentFile.writeStudentFile(PATH, studentList);
         displayAllStudent();
     }
 
     @Override
-    public void sortStudentByName() throws IOException {
-        studentList = readStudentFile.readStudentFile(path);
+    public void sortStudentByName() {
+        studentList = readStudentFile.readStudentFile(PATH);
         studentList.sort(new SortByNameComparator());
-        writeStudentFile.writeStudentFile(path, studentList);
+        writeStudentFile.writeStudentFile(PATH, studentList);
         displayAllStudent();
 
     }
 
     @Override
-    public void sortStudentByHand() throws IOException {
+    public void sortStudentByHand() {
 
         for (int i = 1; i < studentList.size(); i++) {
 
@@ -207,12 +204,44 @@ public class StudentService implements IStudentService {
         System.out.println("Vui lòng nhập thông tin cho sinh viên: ");
         String id = getID();
         String name = getInfo("Tên");
-        String dateOfBirth = getInfo("Ngày sinh");
+        String dateOfBirth = getDateOfBirth();
         String gender = getInfo("Giới tính");
         double score = getScore();
         String className = getInfo("Tên lớp");
 
         return new Student(id, name, dateOfBirth, gender, score, className);
+    }
+
+    private String getDateOfBirth() {
+        String dateOfBirth;
+        while (true)
+            try {
+                dateOfBirth = getInfo("Ngày sinh");
+                checkDateFormatAndAge(dateOfBirth);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Ngày sinh chưa đúng định dạng dd/MM/yyyy. Nhập lại: ");
+            } catch (ParseException e) {
+                System.out.println("Ngày sinh chưa đúng định dạng dd/MM/yyyy. Nhập lại: ");
+            } catch (InvalidAgeException e) {
+                System.out.println(e.getMessage());
+            }
+        return dateOfBirth;
+    }
+
+    private void checkDateFormatAndAge(String dateOfBirth) throws ParseException, InvalidAgeException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        Date check = dateFormat.parse(dateOfBirth);//check format
+
+        String now = dateFormat.format(new Date());
+        int yearNow = Integer.parseInt(now.substring(now.length() - 4));
+        int yearOfBirth = Integer.parseInt(dateOfBirth.substring(dateOfBirth.length() - 4));
+        int age = yearNow - yearOfBirth;
+
+        if (age < 18 || age > 100) {
+            throw new InvalidAgeException("Tuổi phải lớn hơn hoặc bằng 18 và nhỏ hơn hoặc bằng 100");
+        }
     }
 
     private void checkExistID(String id) throws IdExistedException {
