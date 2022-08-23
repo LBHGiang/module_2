@@ -1,4 +1,4 @@
-package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.more_app.id_tu_dong_tang;
+package test.quanli_codegym_id_tu_dong_tang;
 
 public class Person1 {
     /**
