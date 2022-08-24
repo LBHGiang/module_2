@@ -42,6 +42,14 @@ public class Product implements Comparable<Product>, Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 
     @Override
     public int compareTo(Product o) {
