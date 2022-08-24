@@ -1,6 +1,6 @@
 package ss16_io_text_file.practise.sum_numbers_in_file_text;
 
-import utils.read_and_write_all_file.ReadFileUtil;
+import utils.read_and_write_file_skip_line1.ReadFileUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

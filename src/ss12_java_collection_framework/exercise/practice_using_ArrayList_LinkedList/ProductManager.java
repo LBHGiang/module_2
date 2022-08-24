@@ -1,22 +1,25 @@
 package ss12_java_collection_framework.exercise.practice_using_ArrayList_LinkedList;
 
+import utils.read_and_write_binary_file.ReadBinaryFileUtil;
+import utils.read_and_write_binary_file.WriteBinaryFileUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static int choose;
-    private static List<Product> productList = new ArrayList<>();
-
-    static {
-        productList.add(new Product("A1", "Máy tính", 20));
-        productList.add(new Product("A2", "Xe máy", 25));
-        productList.add(new Product("B1", "Con bò", 23));
-    }
+    private final String PATH = "src\\ss12_java_collection_framework\\exercise\\practice_using_ArrayList_LinkedList\\data.dat";
+    private List<Product> productList;
 
     public void displayProductList() {
+        productList = readBinaryProductFile(PATH);
+        if (productList.size()==0){
+            System.out.println("Danh sách rỗng!");
+            return;
+        }
         System.out.println("Danh sách sản phẩm: ");
         for (Product product :
                 productList) {
@@ -25,8 +28,11 @@ public class ProductManager {
     }
 
     public void addNewProduct() {
+        productList = readBinaryProductFile(PATH);
         productList.add(getProductInfo());
         System.out.println("Thêm mới sản phẩm thành công!");
+
+        writeBinaryProductFile(PATH,productList);
         displayProductList();
     }
 
@@ -57,6 +63,7 @@ public class ProductManager {
     }
 
     public void removeProduct() {
+        productList = readBinaryProductFile(PATH);
         Product product = findProductByID("xóa");
         if (product == null) {
             System.out.println("ID không tồn tại trong danh sách!");
@@ -69,6 +76,7 @@ public class ProductManager {
         if (choose == 1) {
             productList.remove(product);
             System.out.println("Xóa sản phẩm thành công");
+            writeBinaryProductFile(PATH,productList);
         } else {
             System.out.println("Xóa sản phẩm không thành công");
         }
@@ -76,6 +84,7 @@ public class ProductManager {
     }
 
     public Product findProductByID(String taskName) {
+        productList = readBinaryProductFile(PATH);
         System.out.print("Vui lòng nhập ID của sản phẩm cần " + taskName + " ");
         String id = scanner.nextLine();
         for (int i = 0; i < productList.size(); i++) {
@@ -87,6 +96,7 @@ public class ProductManager {
     }
 
     public void findProductByApproximateID() {
+        productList = readBinaryProductFile(PATH);
         System.out.print("Mời bạn nhập id của sản phẩm: ");
         String id = scanner.nextLine();
         System.out.println("Kết quả tìm kiếm: ");
@@ -100,6 +110,7 @@ public class ProductManager {
     }
 
     public void sortProductListByPrice() {
+        productList = readBinaryProductFile(PATH);
         System.out.println("Vui lòng chọn cách sắp xếp: ");
         System.out.println("1- Tăng dần---------- 2- Giảm dần ");
         choose = Integer.parseInt(scanner.nextLine());
@@ -114,10 +125,12 @@ public class ProductManager {
             Collections.reverse(productList);
         }
         System.out.println("Danh sách đã được sắp xếp:");
+        writeBinaryProductFile(PATH,productList);
         displayProductList();
     }
 
     public void editProduct() {
+        productList = readBinaryProductFile(PATH);
         Product product = findProductByID("chỉnh sửa");
         if (product == null) {
             System.out.println("ID không tồn tại trong danh sách!");
@@ -149,6 +162,7 @@ public class ProductManager {
                     return;
             }
             System.out.println("Chỉnh sửa thành công!");
+            writeBinaryProductFile(PATH,productList);
             System.out.println(product.toString());
             System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
             System.out.println("1- Có ------------- 2- Hoàn tất");
@@ -162,5 +176,20 @@ public class ProductManager {
     public String getEditInfo(String editContent) {
         System.out.print("Vui lòng nhập " + editContent + " mới: ");
         return scanner.nextLine();
+    }
+
+    public List<Product> readBinaryProductFile(String path) {
+        List<Object> objects = ReadBinaryFileUtil.readBinaryFileUtil(path);
+        List<Product> products = new ArrayList<>();
+        for (Object object: objects
+             ) {
+          products.add((Product)object);
+        }
+        return products;
+    }
+
+    public void  writeBinaryProductFile(String path,List<Product> productList){
+        List<Object> list = new ArrayList<>(productList);
+        WriteBinaryFileUtil.writeBinaryFileUtil(path,list);
     }
 }

@@ -33,6 +33,11 @@ Mục Lục bài tập
     BT1: Insertion sort
 - ss15: Exception
     BT: Kiểm tra tam giác dùng exception.
+-ss16:
+    BT: CopyFile và đếm số lượng ký tự
+-ss17:
+    TH1: Copy file dat
+    TH2: Đọc ghi nhị phân List Student.
 
 - test.method:
 
@@ -42,4 +47,5 @@ Mục Lục bài tập
                 Nhập phần tử cho mảng 1 chiều
                 Hàm đảo ngược mảng số nguyên
                 Tìm max mảng 2 chiều
+                Lấy ngày sinh
     + ngoại lệ: Nhập số với điều kiện sử dụng ngoại lệ

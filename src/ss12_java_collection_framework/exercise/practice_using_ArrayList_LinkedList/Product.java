@@ -1,9 +1,12 @@
 package ss12_java_collection_framework.exercise.practice_using_ArrayList_LinkedList;
 
-public class Product implements Comparable<Product> {
+import java.io.Serializable;
+
+public class Product implements Comparable<Product>, Serializable {
     private String id;
     private String name;
     private double price;
+
 
     public Product() {
     }
@@ -38,14 +41,7 @@ public class Product implements Comparable<Product> {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
-    }
+
 
     @Override
     public int compareTo(Product o) {

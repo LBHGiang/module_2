@@ -1,11 +1,9 @@
 package ss16_io_text_file.exercise.read_file_.csv;
 
-import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
-import utils.read_and_write_all_file.ReadFileUtil;
+import utils.read_and_write_file_skip_line1.ReadFileUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ReadFileCSV {

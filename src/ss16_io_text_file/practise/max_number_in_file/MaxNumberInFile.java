@@ -1,7 +1,7 @@
 package ss16_io_text_file.practise.max_number_in_file;
 
-import utils.read_and_write_all_file.ReadFileUtil;
-import utils.read_and_write_all_file.WriteFileUtil;
+import utils.read_and_write_file_skip_line1.ReadFileUtil;
+import utils.read_and_write_file_skip_line1.WriteFileUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
