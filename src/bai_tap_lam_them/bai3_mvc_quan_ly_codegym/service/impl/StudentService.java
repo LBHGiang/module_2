@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class StudentService implements IStudentService {
     public Scanner scanner = new Scanner(System.in);
-    private static final String PATH = "src/bai_tap_lam_them/bai3_mvc_quan_ly_codegym/data/student.txt";
+    private static final String PATH = "src/bai_tap_lam_them/bai3_mvc_quan_ly_codegym/data/student.csv";
     ReadStudentFile readStudentFile = new ReadStudentFile();
     WriteStudentFile writeStudentFile = new WriteStudentFile();
 
