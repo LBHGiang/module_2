@@ -1,4 +1,4 @@
-package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.controller;
+package bai_tap_lam_them.bai3_codegym_copy.controller;
 
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.IStudentService;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.impl.StudentService;

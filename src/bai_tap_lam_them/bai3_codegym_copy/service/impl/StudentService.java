@@ -1,5 +1,6 @@
-package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service.impl;
+package bai_tap_lam_them.bai3_codegym_copy.service.impl;
 
+import bai_tap_lam_them.bai3_codegym_copy.service.utils.InvalidFormatException;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.SortByNameComparator;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.SortByScoreComparator;
 import bai_tap_lam_them.bai3_mvc_quan_ly_codegym.model.Student;
@@ -38,13 +39,21 @@ public class StudentService implements IStudentService {
     @Override
     public void addNewStudent() {
         studentList = readStudentFile.readStudentFile(PATH);
-        studentList.add(getInfoStudent());
-        writeStudentFile.writeStudentFile(PATH, studentList);
+        System.out.println("Mời bạn nhập thông tin cho học sinh: ");
+
+        studentList.add(new Student(
+                getAndCheckId(),
+                CommonService.getNameInfo(),
+                CommonService.getDateInfo(18, 100),
+                CommonService.getGenderInfo(),
+                getScore(),
+                getClassName()));
         System.out.println("Thêm mới học sinh thành công!");
+        writeStudentFile.writeStudentFile(PATH, studentList);
+
         System.out.println("----------Danh sách sinh viên------------");
         displayAllStudent();
     }
-
 
     @Override
     public void editStudent() {
@@ -55,11 +64,12 @@ public class StudentService implements IStudentService {
             System.out.println("ID không tồn tại trong danh sách!");
             return;
         }
+
+        System.out.println("------------------------------------");
+        System.out.println("Sinh viên cần chỉnh sửa:");
+        System.out.println(student.toString());
         String choose;
         do {
-            System.out.println("---------------------------------------------");
-            System.out.println("Sinh viên cần chỉnh sửa:");
-            System.out.println(student.toString());
             System.out.println("Bạn muốn chỉnh sửa nội dung nào?");
             System.out.println("1. ID");
             System.out.println("2. Tên học sinh");
@@ -73,22 +83,22 @@ public class StudentService implements IStudentService {
 
             switch (choose) {
                 case "1":
-                    student.setId(getID());
+                    student.setId(getAndCheckId());
                     break;
                 case "2":
-                    student.setName(getInfo("tên"));
+                    student.setName(CommonService.getNameInfo());
                     break;
                 case "3":
-                    student.setDateOfBirth(getInfo("ngày sinh"));
+                    student.setDateOfBirth(CommonService.getDateInfo(18,100));
                     break;
                 case "4":
-                    student.setGender(getInfo("giới tính"));
+                    student.setGender(CommonService.getGenderInfo());
                     break;
                 case "5":
-                    student.setScore(Integer.parseInt(getInfo("điểm")));
+                    student.setScore(getScore());
                     break;
                 case "6":
-                    student.setClassName(getInfo("tên lớp"));
+                    student.setClassName(getClassName());
                     break;
                 case "7":
                     return;
@@ -97,16 +107,15 @@ public class StudentService implements IStudentService {
                     return;
             }
             System.out.println("Chỉnh sửa thành công!");
+            System.out.println(student.toString());
             writeStudentFile.writeStudentFile(PATH, studentList);
             System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
-            System.out.println("1- Có ------------- 2- Hoàn tất, quay trở lại.");
+            System.out.println("1- Tiếp tục ------------- 2- Hoàn tất, quay trở lại.");
             choose = scanner.nextLine();
             if (!choose.equals("1")) {
                 return;
             }
-
         } while (true);
-
 
     }
 
@@ -129,13 +138,12 @@ public class StudentService implements IStudentService {
         } else {
             System.out.println("Xóa sinh viên không thành công");
         }
-
     }
 
     @Override
     public void findStudentByID() {
         studentList = readStudentFile.readStudentFile(PATH);
-        String id = getInfo("ID");
+        String id = CommonService.getIdInfo();
         for (Student student :
                 studentList) {
             if (student.getId().equals(id)) {
@@ -151,7 +159,8 @@ public class StudentService implements IStudentService {
     public void findStudentByName() {
         studentList = readStudentFile.readStudentFile(PATH);
         List<Student> foundStudent = new ArrayList<>();
-        String name = getInfo("Tên");
+        System.out.println("Vui lòng nhập tên của Học sinh cần tìm kiếm!");
+        String name = scanner.nextLine();
         for (Student student :
                 studentList) {
             if (student.getName().contains(name)) {
@@ -173,6 +182,7 @@ public class StudentService implements IStudentService {
     public void sortStudentByScore() {
         studentList = readStudentFile.readStudentFile(PATH);
         studentList.sort(new SortByScoreComparator());
+        System.out.println("Sắp xếp thành công");
         writeStudentFile.writeStudentFile(PATH, studentList);
         displayAllStudent();
     }
@@ -181,6 +191,7 @@ public class StudentService implements IStudentService {
     public void sortStudentByName() {
         studentList = readStudentFile.readStudentFile(PATH);
         studentList.sort(new SortByNameComparator());
+        System.out.println("Sắp xếp thành công");
         writeStudentFile.writeStudentFile(PATH, studentList);
         displayAllStudent();
 
@@ -188,7 +199,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sortStudentByHand() {
-
+        studentList = readStudentFile.readStudentFile(PATH);
         for (int i = 1; i < studentList.size(); i++) {
 
             Student temp = studentList.get(i);
@@ -198,26 +209,17 @@ public class StudentService implements IStudentService {
             }
             studentList.set(j + 1, temp);
         }
+        writeStudentFile.writeStudentFile(PATH, studentList);
+        System.out.println("Sắp xếp thành công");
         displayAllStudent();
-    }
-
-    public Student getInfoStudent() {
-        System.out.println("Vui lòng nhập thông tin cho sinh viên: ");
-        String id = getID();
-        String name = getInfo("Tên");
-        String dateOfBirth = getDateOfBirthInFo(18,100);
-        String gender = getInfo("Giới tính");
-        double score = getScore();
-        String className = getInfo("Tên lớp");
-
-        return new Student(id, name, dateOfBirth, gender, score, className);
     }
 
     /**
      * Hàm lấy ngày sinh từ người dùng.
      * Yêu cầu người dùng nhập đúng định dạng dd/MM/yyyy chặt chẽ.
+     *
      * @param ageFrom Tuổi nhỏ nhất (18)
-     * @param ageTo Tuổi lớn nhất (100)
+     * @param ageTo   Tuổi lớn nhất (100)
      * @return ngày sinh (String)
      */
     public String getDateOfBirthInFo(int ageFrom, int ageTo) {
@@ -263,11 +265,25 @@ public class StudentService implements IStudentService {
         return dateOfBirth;
     }
 
-    private void checkExistID(String id) throws IdExistedException {
-        for (Student student : studentList
-        ) {
-            if (student.getId().equals(id)) {
-                throw new IdExistedException("Id đã tồn tại! Vui lòng nhập lại.");
+    /**
+     * Cho người dùng nhập ID đúng định dạng (gọi hàm)
+     * Sau đó check sự tồn tại
+     *
+     * @return id String
+     */
+    private String getAndCheckId() {
+        while (true) {
+            String id = CommonService.getIdInfo();
+            try {
+                for (Student student : studentList
+                ) {
+                    if (student.getId().equals(id)) {
+                        throw new IdExistedException("Id đã tồn tại! Vui lòng nhập lại.");
+                    }
+                }
+                return id;
+            } catch (IdExistedException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -276,66 +292,51 @@ public class StudentService implements IStudentService {
         double score;
         while (true)
             try {
-                score = Double.parseDouble(getInfo("Score"));
-                checkInvalidScore(score);
-                break;
-            } catch (InvalidNumberException e) {
-                System.out.println(e.getMessage());
+                System.out.print("Score: ");
+                score = Double.parseDouble(scanner.nextLine());
+                if (score < 0 || score > 10) {
+                    throw new InvalidNumberException("Điểm nhập vào không hợp lệ: Điểm > 0 và Điểm <= 10");
+                }
+                return score;
             } catch (NumberFormatException e) {
                 System.out.println("Điểm phải là số thực! Vui lòng nhập lại!");
+            } catch (InvalidNumberException e) {
+                System.out.println(e.getMessage());
             }
-        return score;
     }
 
-    public String getID() {
-        String id;
+    /**
+     * Hàm lấy tên lớp với định dạng
+     * (A|C)XXXX(G|I)1 : với X là các số từ 0 -> 9
+     *
+     * @return className
+     */
+    private String getClassName() {
+        String className;
+        final String CLASS_NAME_REGEX = "^[AC]\\d{4}[GI]1$";
         while (true)
             try {
-                id = getInfo("ID");
-                checkExistID(id);
-                break;
-            } catch (IdExistedException e) {
+                System.out.print("ClassName: ");
+                className = scanner.nextLine();
+                if (!className.matches(CLASS_NAME_REGEX)) {
+                    throw new InvalidFormatException("Tên lớp chưa đúng định dạng! " +
+                            "Vui lòng nhập lại! Ví dụ C0622G1");
+                }
+                return className;
+            } catch (InvalidFormatException e) {
                 System.out.println(e.getMessage());
             }
-        return id;
-    }
-
-    public String getInfo(String infoName) {
-        String input;
-        while (true) {
-            try {
-                System.out.print("Vui lòng nhập " + infoName + ": ");
-                input = scanner.nextLine();
-                checkInvalidString(input);
-                break;
-            } catch (InvalidStringException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        return input;
     }
 
     public Student findStudentByIdToTask(String taskName) {
-        String id = getInfo("ID để " + taskName);
+        System.out.println("Vui lòng nhập id của Học Sinh cần " + taskName + "!");
+        String id = CommonService.getIdInfo();
         for (Student student : studentList) {
             if (student.getId().equals(id)) {
                 return student;
             }
         }
         return null;
-    }
-
-    public void checkInvalidScore(double score) throws InvalidNumberException {
-        if (score < 0 || score > 10) {
-            throw new InvalidNumberException("Điểm nhập vào không hợp lệ: Điểm > 0 và Điểm <= 10");
-        }
-    }
-
-    public void checkInvalidString(String str) throws InvalidStringException {
-        if (str.equals("")) {
-            throw new InvalidStringException("Vui lòng nhập dữ liệu vào!");
-        }
     }
 
 }

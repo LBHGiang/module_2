@@ -1,11 +1,11 @@
-package bai_tap_lam_them.bai3_mvc_quan_ly_codegym.service;
+package bai_tap_lam_them.bai3_codegym_copy.service;
 
 import java.io.IOException;
 
 public interface IStudentService {
     void displayAllStudent();
 
-    void addNewStudent();
+    void addStudent();
 
     void editStudent();
 
