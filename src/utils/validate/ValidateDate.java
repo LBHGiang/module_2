@@ -1,4 +1,4 @@
-package test.method;
+package utils.validate;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.InvalidNumberException;
 
@@ -7,16 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class LayNgaySinh {
-
-    /**
-     * Hàm lấy ngày sinh từ người dùng.
-     * Yêu cầu người dùng nhập đúng định dạng dd/MM/yyyy chặt chẽ.
-     * @param ageFrom Tuổi nhỏ nhất (18)
-     * @param ageTo Tuổi lớn nhất (100)
-     * @return ngày sinh (String)
-     */
-    public String getDateOfBirthInfo(int ageFrom, int ageTo) {
+public class ValidateDate{
+    public static String getDateInfo(int ageFrom, int ageTo) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
         Scanner scanner = new Scanner(System.in);
@@ -29,9 +21,10 @@ public class LayNgaySinh {
         int age;
         while (true) {
             try {
-                System.out.print("Vui lòng nhập ngày sinh: ");
+                System.out.print("Ngày sinh: ");
                 dateOfBirth = scanner.nextLine();
                 checkFormat = sdf.parse(dateOfBirth);//check dữ liệu nhập vào
+                System.out.println(sdf.parse(dateOfBirth).getClass());
                 now = new Date();//Thời gian hiện tại
                 strNow = sdf.format(now);//format thành chuỗi dạng  dd/MM/yyyy
 
@@ -45,17 +38,20 @@ public class LayNgaySinh {
 
                 //Kiểm tra tuổi nhập vào
                 if (age < ageFrom || age > ageTo) {
-                    throw new InvalidNumberException("Tuổi phải lớn hơn hoặc bằng 18 và nhỏ hơn hoặc bằng 100");
+                    throw new InvalidNumberException("Tuổi phải lớn hơn hoặc bằng " + ageFrom + " và nhỏ hơn hoặc bằng " + ageTo);
                 }
-                break;
+                return dateOfBirth;
             } catch (NumberFormatException e) {
-                System.out.println("Ngày sinh phải là chuỗi số có định dạng dd/MM/yyyy. Nhập lại: ");
+                System.out.println("Ngày sinh phải là chuỗi số có định dạng dd/MM/yyyy. Vui lòng nhập lại: ");
             } catch (ParseException e) {
                 System.out.println("Dữ liệu nhập vào chưa chính xác. Nhập lại: ");
             } catch (InvalidNumberException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return dateOfBirth;
+    }
+
+    public static void main(String[] args) {
+        getDateInfo(1,199);
     }
 }

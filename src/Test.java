@@ -1,13 +1,14 @@
-import ss12_java_collection_framework.exercise.practice_using_ArrayList_LinkedList.Product;
+import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Test {
+class Test {
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        List<Product> products = new ArrayList<>();
+        System.out.println("d=");
+        run();
 
-
-
+    }
+    public static void run(){
+        double d = Double.parseDouble(scanner.nextLine());
+        System.out.println(d);
     }
 }
