@@ -3,10 +3,10 @@ package case_study.furama_resort.controllers;
 import java.util.Scanner;
 
 public class EmployeeController {
-    private final Scanner scanner = new Scanner(System.in);
-    private String choose;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public void displayEmployeeMenu() {
+    public static void displayEmployeeMenu() {
+        String choose;
         while (true) {
             System.out.println("-------------------------");
             System.out.println("Welcome to employee management:");

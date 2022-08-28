@@ -1,5 +1,7 @@
 package case_study.furama_resort.controllers;
 
+import case_study.furama_resort.services.IEmployeeService;
+
 import java.util.Scanner;
 
 public class FuramaController {
@@ -20,7 +22,7 @@ public class FuramaController {
             choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-
+                    EmployeeController.displayEmployeeMenu();
                     break;
                 case "2":
                     break;
@@ -33,7 +35,7 @@ public class FuramaController {
                 case "6":
                     return;
                 default:
-                    System.out.println("Your choice is not correct!");
+                    System.out.println("Your choice is not correct! Please try again!");
             }
         }
     }

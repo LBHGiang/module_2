@@ -5,14 +5,15 @@ public abstract class Person {
     private String name;
     private String dateOfBirth;
     private String gender;
-    private int identityCard;
-    private int phoneNumber;
+    private String identityCard;
+    private String phoneNumber;
     private String email;
+    public static final String[] GENDER_OPTIONS = {"male,female,other gender"};
 
     public Person() {
     }
 
-    public Person(String id, String name, String dateOfBirth, String gender, int identityCard, int phoneNumber, String email) {
+    public Person(String id, String name, String dateOfBirth, String gender, String identityCard, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -54,19 +55,19 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public int getIdentityCard() {
+    public String getIdentityCard() {
         return identityCard;
     }
 
-    public void setIdentityCard(int identityCard) {
+    public void setIdentityCard(String identityCard) {
         this.identityCard = identityCard;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -88,5 +89,9 @@ public abstract class Person {
                 ", phoneNumber=" + phoneNumber +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public String toFileString() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s", id, name, dateOfBirth, gender, identityCard, phoneNumber, email);
     }
 }

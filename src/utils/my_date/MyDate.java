@@ -1,4 +1,4 @@
-package case_study.furama_resort.models;
+package utils.my_date;
 
 
 import java.text.ParseException;
@@ -14,6 +14,7 @@ public class MyDate implements Comparable<MyDate> {
     }
 
     public MyDate(String strDate) throws ParseException {
+        formatter.setLenient(false);
         this.strDate = strDate;
         this.date = formatter.parse(this.strDate);
     }
@@ -23,6 +24,7 @@ public class MyDate implements Comparable<MyDate> {
     }
 
     public void setStrDate(String strDate) throws ParseException {
+        formatter.setLenient(false);
         this.strDate = strDate;
         this.date = formatter.parse(this.strDate);
     }
@@ -31,9 +33,9 @@ public class MyDate implements Comparable<MyDate> {
         return date;
     }
 
-    public static int getAge(MyDate myDate) throws ParseException {
+    public int getAge() throws ParseException {
         Date now = new Date();
-        return (int) ((now.getTime() - myDate.getDate().getTime()) / 31556926 / 1000);
+        return (int) ((now.getTime() - this.date.getTime()) / 31556926 / 1000);
     }
 
     public static int getDays(MyDate startDate, MyDate endDate) {
@@ -50,13 +52,4 @@ public class MyDate implements Comparable<MyDate> {
         return (int) (this.getDate().getTime() - o.getDate().getTime());
     }
 
-
-    //test
-//    public static void main(String[] args) throws ParseException {
-//        MyDate sinhNhat1 = new MyDate("03/03/1998");
-//        MyDate sinhNhat2 = new MyDate("03/04/1998");
-//        System.out.println(MyDate.getAge(sinhNhat1));
-//        System.out.println(sinhNhat1.compareTo(new MyDate()));
-//        System.out.println(MyDate.getDays(sinhNhat1, sinhNhat2));
-//    }
 }
