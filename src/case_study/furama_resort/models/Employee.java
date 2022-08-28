@@ -3,16 +3,16 @@ package case_study.furama_resort.models;
 public class Employee extends Person {
     private String level;
     private String position;
-    private double salary;
-    public static final String[] LEVEL_OPTIONS = {"Intermediate","College","University","After university"};
-    public static final String[] POSITION_OPTIONS = {"Receptionist","Service","Expert","Monitoring","Manager","Director"};
-
+    private String salary;
+    public static final String[] LEVEL_OPTIONS = {"Intermediate", "College", "University", "After university"};
+    public static final String[] POSITION_OPTIONS = {"Receptionist", "Service", "Expert", "Monitoring", "Manager", "Director"};
+    private static final String MONEY = "$";
 
 
     public Employee() {
     }
 
-    public Employee(String id, String name, String dateOfBirth, String gender, String identityCard, String phoneNumber, String email, String level, String position, double salary) {
+    public Employee(String id, String name, String dateOfBirth, String gender, String identityCard, String phoneNumber, String email, String level, String position, String salary) {
         super(id, name, dateOfBirth, gender, identityCard, phoneNumber, email);
         this.level = level;
         this.position = position;
@@ -35,11 +35,11 @@ public class Employee extends Person {
         this.position = position;
     }
 
-    public double getSalary() {
-        return salary;
+    public String getSalary() {
+        return salary + MONEY;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 
@@ -48,7 +48,7 @@ public class Employee extends Person {
         return "Employee{ " + super.toString() +
                 ", level='" + level + '\'' +
                 ", position='" + position + '\'' +
-                ", salary=" + salary +
+                ", salary=" + salary + MONEY +
                 '}';
     }
 

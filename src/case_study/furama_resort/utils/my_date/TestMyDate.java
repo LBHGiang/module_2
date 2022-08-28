@@ -1,4 +1,4 @@
-package case_study.furama_resort.services.utils.my_date;
+package case_study.furama_resort.utils.my_date;
 
 import java.text.ParseException;
 

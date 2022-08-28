@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class FuramaController {
     private final Scanner scanner = new Scanner(System.in);
+    private final EmployeeController employeeController = new EmployeeController();
     private String choose;
-
     public void displayMainMenu() {
         while (true) {
             System.out.println("-------------------------");
@@ -22,7 +22,7 @@ public class FuramaController {
             choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-                    EmployeeController.displayEmployeeMenu();
+                    employeeController.displayEmployeeMenu();
                     break;
                 case "2":
                     break;
@@ -33,6 +33,7 @@ public class FuramaController {
                 case "5":
                     break;
                 case "6":
+                    System.out.println("Thanks and see you again!");
                     return;
                 default:
                     System.out.println("Your choice is not correct! Please try again!");

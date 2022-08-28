@@ -1,10 +1,9 @@
-package case_study.furama_resort.services.utils.my_date;
+package case_study.furama_resort.utils.my_date;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.InvalidNumberException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class MyDateService {

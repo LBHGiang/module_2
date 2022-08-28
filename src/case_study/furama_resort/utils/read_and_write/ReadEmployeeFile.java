@@ -1,4 +1,4 @@
-package case_study.furama_resort.services.utils.read_and_write;
+package case_study.furama_resort.utils.read_and_write;
 
 import case_study.furama_resort.models.Employee;
 import utils.read_and_write_file_skip_line1.ReadFileUtil;
@@ -25,7 +25,7 @@ public class ReadEmployeeFile {
                     info[6],
                     info[7],
                     info[8],
-                    Double.parseDouble(info[9])));
+                    info[9]));
         }
         return employeeList;
     }

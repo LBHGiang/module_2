@@ -1,4 +1,4 @@
-package case_study.furama_resort.services.utils.read_and_write;
+package case_study.furama_resort.utils.read_and_write;
 
 import java.io.*;
 

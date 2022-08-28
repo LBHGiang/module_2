@@ -13,7 +13,7 @@ public class ValidateIdentityCard {
      * @return true/false đúng định dạng hoặc không
      */
     public static boolean validateIdentityCard(String identityCard) {
-        final String IDENTITY_CARD_REGEX = "^[1-9][0-9]{8}";
+        final String IDENTITY_CARD_REGEX = "^[1-9][0-9]{8}$";
         return identityCard.matches(IDENTITY_CARD_REGEX);
     }
 

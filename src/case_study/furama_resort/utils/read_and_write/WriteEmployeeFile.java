@@ -1,6 +1,5 @@
-package case_study.furama_resort.services.utils.read_and_write;
+package case_study.furama_resort.utils.read_and_write;
 
-import bai_tap_lam_them.bai3_quan_ly_codegym.model.Student;
 import case_study.furama_resort.models.Employee;
 import utils.read_and_write_file_skip_line1.WriteFileUtil;
 

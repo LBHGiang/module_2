@@ -1,15 +1,12 @@
 package case_study.furama_resort.services.impls;
 
-import bai_tap_lam_them.bai3_quan_ly_codegym.model.Student;
-import bai_tap_lam_them.bai3_quan_ly_codegym.service.impl.CommonService;
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.IdExistedException;
 import case_study.furama_resort.models.Employee;
 import case_study.furama_resort.models.Person;
 import case_study.furama_resort.services.IEmployeeService;
-import case_study.furama_resort.services.utils.get_info.GetInFo;
-import case_study.furama_resort.services.utils.my_date.MyDate;
-import case_study.furama_resort.services.utils.read_and_write.ReadEmployeeFile;
-import case_study.furama_resort.services.utils.read_and_write.WriteEmployeeFile;
+import case_study.furama_resort.utils.get_info.GetInFo;
+import case_study.furama_resort.utils.read_and_write.ReadEmployeeFile;
+import case_study.furama_resort.utils.read_and_write.WriteEmployeeFile;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,13 +16,6 @@ public class EmployeeService implements IEmployeeService {
     private static final String EMPLOYEE_PATH = "src\\case_study\\furama_resort\\data\\employee.csv";
     ReadEmployeeFile readEmployeeFile = new ReadEmployeeFile();
     WriteEmployeeFile writeEmployeeFile = new WriteEmployeeFile();
-
-
-    public static final String ID_REGEX = "^\\S+$";
-    public static final String IDENTITY_CARD_REGEX = "^[1-9][0-9]{8}";
-    public static final String PHONE_NUMBER_REGEX = "\\d{2}[-]0\\d{9}";
-    public static final String EMAIL_REGEX = "[A-Za-z0-9]+@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)";
-
 
     private static List<Employee> employeeList;
 
@@ -53,122 +43,96 @@ public class EmployeeService implements IEmployeeService {
                 getNameInfo(),
                 getBirthdayInfo(),
                 getGenderInfo(),
-                getIdentityCardInfo(),
+                getIdentityCardInfo(employeeList),
                 getPhoneNumberInfo(),
                 getEmailInfo(),
                 getLevelInfo(),
                 getPositionInfo(),
-                getSalaryInfo());
+                getSalaryInfo()));
 
-
-
-        System.out.println("Thêm mới học sinh thành công!");
-        writeStudentFile.writeStudentFile(PATH, studentList);
-        displayAllStudent();
+        System.out.println("Added new students successfully!");
+        writeEmployeeFile.writeEmployeeFile(EMPLOYEE_PATH, employeeList);
+        displayList();
     }
-
-    private double getSalaryInfo() {
-
-    }
-
-    private String getPositionInfo() {
-        int choice = GetInFo.takeChoice("Level: ", Employee.POSITION_OPTIONS);
-        return Employee.POSITION_OPTIONS[choice];
-    }
-
-    private String getLevelInfo() {
-        int choice = GetInFo.takeChoice("Level: ", Employee.LEVEL_OPTIONS);
-        return Employee.LEVEL_OPTIONS[choice];
-
-    }
-
-    private String getEmailInfo() {
-        return GetInFo.getStringInfo("Email: ", EMAIL_REGEX,
-                "Name: character or number +@+ Tail: character or number or 1 sign.\n" +
-                        "Sign . not at the end.");
-    }
-
-    private String getPhoneNumberInfo() {
-        return GetInFo.getStringInfo("Phone Number: ", PHONE_NUMBER_REGEX,
-                "Phone number format must be: xx-0xxxxxxxxx");
-    }
-
-    private String getIdentityCardInfo() {
-        return GetInFo.getStringInfo("IdentityCard: ", IDENTITY_CARD_REGEX, "Identity Card number must be consists of 9 numbers, the first number is different from 0");
-    }
-
-    private String getGenderInfo() {
-       int choice = GetInFo.takeChoice("Gender: ", Person.GENDER_OPTIONS);
-       return Person.GENDER_OPTIONS[choice];
-    }
-
-    private String getBirthdayInfo() {
-       return GetInFo.getDateInfo("Date Of Birth: ", 18, 100).getStrDate();
-    }
-
 
     @Override
     public void editInfo() {
-        studentList = readStudentFile.readStudentFile(PATH);
+        employeeList = readEmployeeFile.readEmployeeFile(EMPLOYEE_PATH);
 
-        Student student = findStudentByIdToTask("chỉnh sửa");
-        if (student == null) {
-            System.out.println("ID không tồn tại trong danh sách!");
+        Employee employee = findEmployeeById(employeeList);
+        if (employee == null) {
+            System.out.println("Id does not exist in the list!");
             return;
         }
 
         System.out.println("------------------------------------");
-        System.out.println("Sinh viên cần chỉnh sửa:");
-        System.out.println(student.toString());
-        String choose;
+        System.out.println("Employee need to edit information:");
+        System.out.println(employee.toString());
         do {
-            System.out.println("Bạn muốn chỉnh sửa nội dung nào?");
-            System.out.println("1. ID");
-            System.out.println("2. Tên học sinh");
-            System.out.println("3. Ngày sinh");
-            System.out.println("4. Giới tính");
-            System.out.println("5. Điểm số");
-            System.out.println("6. Tên lớp");
-            System.out.println("7. Thoát");
-            System.out.println("Chọn nội dung cần chỉnh sửa: 1 -> 7");
-            choose = scanner.nextLine();
-
+            String[] editOptions = {"Id", "Name", "DateOfBirth", "Gender", "IdentityCard",
+                    "PhoneNumber", "Email", "Level", "Osition", "Salary", "Return"};
+            int choose = GetInFo.takeChoice("Select the content to edit: ", editOptions);
             switch (choose) {
-                case "1":
-                    student.setId(getAndCheckId());
+                case 1:
+                    employee.setId(getAndCheckId(employeeList));
                     break;
-                case "2":
-                    student.setName(CommonService.getNameInfo());
+                case 2:
+                    employee.setName(getNameInfo());
                     break;
-                case "3":
-                    student.setDateOfBirth(CommonService.getDateInfo(18, 100));
+                case 3:
+                    employee.setDateOfBirth(getBirthdayInfo());
                     break;
-                case "4":
-                    student.setGender(CommonService.getGenderInfo());
+                case 4:
+                    employee.setGender(getGenderInfo());
                     break;
-                case "5":
-                    student.setScore(getScore());
+                case 5:
+                    employee.setIdentityCard(getIdentityCardInfo(employeeList));
                     break;
-                case "6":
-                    student.setClassName(getClassName());
+                case 6:
+                    employee.setPhoneNumber(getPhoneNumberInfo());
                     break;
-                case "7":
+                case 7:
+                    employee.setEmail(getEmailInfo());
+                    return;
+                case 8:
+                    employee.setLevel(getLevelInfo());
+                    break;
+                case 9:
+                    employee.setPosition(getPositionInfo());
+                    break;
+                case 10:
+                    employee.setSalary(getSalaryInfo());
+                    break;
+                case 11:
                     return;
                 default:
-                    System.out.println("Nội dung bạn vừa chọn không có trong menu");
+                    System.out.println("Your choice is not correct!");
                     return;
             }
-            System.out.println("Chỉnh sửa thành công!");
-            System.out.println(student.toString());
-            writeStudentFile.writeStudentFile(PATH, studentList);
-            System.out.println("Bạn có muốn tiếp tục chỉnh sửa?");
-            System.out.println("1- Tiếp tục ------------- 2 hoặc Khác- Hoàn tất, quay trở lại.");
-            choose = scanner.nextLine();
-            if (!choose.equals("1")) {
-                System.out.println("Quay lại menu");
+            System.out.println("Editing is successful!");
+            System.out.println(employee.toString());
+            writeEmployeeFile.writeEmployeeFile(EMPLOYEE_PATH, employeeList);
+
+            System.out.println("Do you want to continue editing?");
+            System.out.printf("%-10sContinue\n%-10sCompleted", 1, "Other");
+            String accept = scanner.nextLine();
+            if (!accept.equals("1")) {
+                System.out.println("Return");
                 return;
             }
         } while (true);
+    }
+
+    private Employee findEmployeeById(List<Employee> list) {
+        final String ID_REGEX = "^\\S+$";
+        String id = GetInFo.getStringInfo("Please enter Employee ID: ", ID_REGEX, "Id must not contain spaces");
+        for (Employee employee : list
+        ) {
+            if (employee.getId().equals(id)) {
+                return employee;
+            }
+        }
+        return null;
     }
 
     /**
@@ -178,11 +142,9 @@ public class EmployeeService implements IEmployeeService {
      * @return
      */
     private String getAndCheckId(List<Employee> list) {
+        final String ID_REGEX = "^\\S+$";
         while (true) {
-            String id = GetInFo.getStringInfo(
-                    "ID: ",
-                    ID_REGEX
-                    , "Id must not contain spaces");
+            String id = GetInFo.getStringInfo("ID: ", ID_REGEX, "Id must not contain spaces");
             try {
                 for (Employee employee : list
                 ) {
@@ -204,4 +166,62 @@ public class EmployeeService implements IEmployeeService {
                 5, 10,
                 "Length of name must be from 5 to 50 characters long");
     }
+
+    private String getSalaryInfo() {
+        return GetInFo.getDoubleNumber("Salary: ", 0, 999999999);
+    }
+
+    private String getPositionInfo() {
+        int choice = GetInFo.takeChoice("Level: ", Employee.POSITION_OPTIONS);
+        return Employee.POSITION_OPTIONS[choice - 1];
+    }
+
+    private String getLevelInfo() {
+        int choice = GetInFo.takeChoice("Level: ", Employee.LEVEL_OPTIONS);
+        return Employee.LEVEL_OPTIONS[choice - 1];
+
+    }
+
+    private String getEmailInfo() {
+        final String EMAIL_REGEX = "^[A-Za-z0-9]+@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
+        return GetInFo.getStringInfo("Email: ", EMAIL_REGEX,
+                "Name: character or number +@+ Tail: character or number or 1 sign.\n" +
+                        "Sign . not at the end.");
+    }
+
+    private String getPhoneNumberInfo() {
+        final String PHONE_NUMBER_REGEX = "^\\d{2}[-]0\\d{9}$";
+        return GetInFo.getStringInfo("Phone Number: ", PHONE_NUMBER_REGEX,
+                "Phone number format must be: xx-0xxxxxxxxx");
+    }
+
+    private String getIdentityCardInfo(List<Employee> list) {
+        final String IDENTITY_CARD_REGEX = "^[1-9][0-9]{8}$";
+        while (true) {
+            String identityCard = GetInFo.getStringInfo("IdentityCard: ", IDENTITY_CARD_REGEX,
+                    "Identity Card number must be consists of 9 numbers, the first number is different from 0");
+            try {
+                for (Employee employee : list
+                ) {
+                    if (employee.getIdentityCard().equals(identityCard)) {
+                        throw new IdExistedException("IdentityCard already exists! Please re-enter!");
+                    }
+                }
+                return identityCard;
+            } catch (IdExistedException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getGenderInfo() {
+        int choice = GetInFo.takeChoice("Gender: ", Person.GENDER_OPTIONS);
+        return Person.GENDER_OPTIONS[choice - 1];
+    }
+
+    private String getBirthdayInfo() {
+        return GetInFo.getDateInfo("Date Of Birth: ", 18, 100).getStrDate();
+    }
+
+
 }

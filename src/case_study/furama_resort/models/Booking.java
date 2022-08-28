@@ -1,6 +1,6 @@
 package case_study.furama_resort.models;
 
-import case_study.furama_resort.services.utils.my_date.MyDate;
+import case_study.furama_resort.utils.my_date.MyDate;
 
 public class Booking {
     private String bookingId;

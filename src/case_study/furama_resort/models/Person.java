@@ -8,7 +8,7 @@ public abstract class Person {
     private String identityCard;
     private String phoneNumber;
     private String email;
-    public static final String[] GENDER_OPTIONS = {"male,female,other gender"};
+    public static final String[] GENDER_OPTIONS = {"male", "female", "other gender"};
 
     public Person() {
     }
@@ -87,8 +87,7 @@ public abstract class Person {
                 ", gender='" + gender + '\'' +
                 ", identityCard=" + identityCard +
                 ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\'';
     }
 
     public String toFileString() {

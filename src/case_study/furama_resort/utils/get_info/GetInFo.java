@@ -1,8 +1,8 @@
-package case_study.furama_resort.services.utils.get_info;
+package case_study.furama_resort.utils.get_info;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.InvalidFormatException;
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.InvalidNumberException;
-import case_study.furama_resort.services.utils.my_date.MyDate;
+import case_study.furama_resort.utils.my_date.MyDate;
 
 import java.text.ParseException;
 import java.util.Scanner;
@@ -83,11 +83,12 @@ public class GetInFo {
                 for (int i = 0; i < options.length; i++) {
                     System.out.println((i + 1) + "\t" + options[i]);
                 }
+                System.out.print("Please choose from 1 to " + options.length + ": ");
                 choose = Integer.parseInt(scanner.nextLine());
                 if (choose < 1 || choose > options.length) {
                     throw new InvalidNumberException("");
                 }
-                return choose-1;
+                return choose;
             } catch (NumberFormatException | InvalidNumberException e) {
                 System.out.println("Invalid data entered. Please choose from 1 to " + options.length);
             }
@@ -95,20 +96,20 @@ public class GetInFo {
     }
 
     /**
-     * Hàm lấy dứ liệu số thực
+     * Hàm lấy dứ liệu số thực ở dạng String
      *
      * @param request Dòng thông báo yêu cầu người dùng chọn.
      * @param min     From min
      * @param max     to max
-     * @return Số thực
+     * @return Số thực dạng String
      */
-    public static double getDoubleNumber(String request, double min, double max) {
-        double number;
+    public static String getDoubleNumber(String request, double min, double max) {
+        String number;
         while (true)
             try {
                 System.out.print(request);
-                number = Double.parseDouble(scanner.nextLine());
-                if (number < min || number > max) {
+                number = scanner.nextLine();
+                if (Double.parseDouble(number) < min || Double.parseDouble(number) > max) {
                     throw new InvalidNumberException("Data must be from " + min + " to " + max + " Please re-enter!");
                 }
                 return number;
@@ -120,20 +121,20 @@ public class GetInFo {
     }
 
     /**
-     * Hàm lấy dứ liệu số nguyên
+     * Hàm lấy dứ liệu số nguyên dạng String
      *
      * @param request Dòng thông báo yêu cầu người dùng chọn.
      * @param min     From min
      * @param max     to max
-     * @return Số nguyên
+     * @return Số nguyên dạng String
      */
-    public static int getIntegerNumber(String request, int min, int max) {
-        int number;
+    public static String getIntegerNumber(String request, int min, int max) {
+        String number;
         while (true)
             try {
                 System.out.print(request);
-                number = Integer.parseInt((scanner.nextLine()));
-                if (number < min || number > max) {
+                number = scanner.nextLine();
+                if (Integer.parseInt(number) < min || Integer.parseInt(number) > max) {
                     throw new InvalidNumberException("Data must be from " + min + " to " + max + " Please re-enter!");
                 }
                 return number;
