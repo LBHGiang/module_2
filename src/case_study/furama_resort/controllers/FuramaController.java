@@ -1,13 +1,13 @@
 package case_study.furama_resort.controllers;
 
-import case_study.furama_resort.services.IEmployeeService;
-
 import java.util.Scanner;
 
 public class FuramaController {
     private final Scanner scanner = new Scanner(System.in);
     private final EmployeeController employeeController = new EmployeeController();
+    private final CustomerController customerController = new CustomerController();
     private String choose;
+
     public void displayMainMenu() {
         while (true) {
             System.out.println("-------------------------");
@@ -25,6 +25,7 @@ public class FuramaController {
                     employeeController.displayEmployeeMenu();
                     break;
                 case "2":
+                    customerController.displayCustomerMenu();
                     break;
                 case "3":
                     break;

@@ -2,7 +2,6 @@ package case_study.furama_resort.services.impls;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.IdExistedException;
 import case_study.furama_resort.models.Employee;
-import case_study.furama_resort.models.Person;
 import case_study.furama_resort.services.IEmployeeService;
 import case_study.furama_resort.utils.get_info.GetInFo;
 import case_study.furama_resort.utils.read_and_write.ReadEmployeeFile;
@@ -12,10 +11,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService implements IEmployeeService {
-    public Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static final String EMPLOYEE_PATH = "src\\case_study\\furama_resort\\data\\employee.csv";
-    ReadEmployeeFile readEmployeeFile = new ReadEmployeeFile();
-    WriteEmployeeFile writeEmployeeFile = new WriteEmployeeFile();
+    private static final ReadEmployeeFile readEmployeeFile = new ReadEmployeeFile();
+    private static final WriteEmployeeFile writeEmployeeFile = new WriteEmployeeFile();
 
     private static List<Employee> employeeList;
 
@@ -40,17 +39,17 @@ public class EmployeeService implements IEmployeeService {
 
         employeeList.add(new Employee(
                 getAndCheckId(employeeList),
-                getNameInfo(),
+                GetInFo.getNameInfo(),
                 getBirthdayInfo(),
-                getGenderInfo(),
-                getIdentityCardInfo(employeeList),
-                getPhoneNumberInfo(),
-                getEmailInfo(),
+                GetInFo.getGenderInfo(),
+                getAndCheckIdentityCard(employeeList),
+                GetInFo.getPhoneNumberInfo(),
+                GetInFo.getEmailInfo(),
                 getLevelInfo(),
                 getPositionInfo(),
                 getSalaryInfo()));
 
-        System.out.println("Added new students successfully!");
+        System.out.println("Added new employee successfully!");
         writeEmployeeFile.writeEmployeeFile(EMPLOYEE_PATH, employeeList);
         displayList();
     }
@@ -59,6 +58,10 @@ public class EmployeeService implements IEmployeeService {
     public void editInfo() {
         employeeList = readEmployeeFile.readEmployeeFile(EMPLOYEE_PATH);
 
+        if (employeeList.size() == 0) {
+            System.out.println("Empty list!");
+            return;
+        }
         Employee employee = findEmployeeById(employeeList);
         if (employee == null) {
             System.out.println("Id does not exist in the list!");
@@ -77,23 +80,23 @@ public class EmployeeService implements IEmployeeService {
                     employee.setId(getAndCheckId(employeeList));
                     break;
                 case 2:
-                    employee.setName(getNameInfo());
+                    employee.setName(GetInFo.getNameInfo());
                     break;
                 case 3:
                     employee.setDateOfBirth(getBirthdayInfo());
                     break;
                 case 4:
-                    employee.setGender(getGenderInfo());
+                    employee.setGender(GetInFo.getGenderInfo());
                     break;
                 case 5:
-                    employee.setIdentityCard(getIdentityCardInfo(employeeList));
+                    employee.setIdentityCard(getAndCheckIdentityCard(employeeList));
                     break;
                 case 6:
-                    employee.setPhoneNumber(getPhoneNumberInfo());
+                    employee.setPhoneNumber(GetInFo.getPhoneNumberInfo());
                     break;
                 case 7:
-                    employee.setEmail(getEmailInfo());
-                    return;
+                    employee.setEmail(GetInFo.getEmailInfo());
+                    break;
                 case 8:
                     employee.setLevel(getLevelInfo());
                     break;
@@ -159,15 +162,7 @@ public class EmployeeService implements IEmployeeService {
         }
     }
 
-    public String getNameInfo() {
-        final String NAME_REGEX = "^\\p{L}+(\\s\\p{L}+)*$";
-        return GetInFo.getStringInfo("Name: ", NAME_REGEX,
-                "The name cannot contain numbers and special characters.",
-                5, 10,
-                "Length of name must be from 5 to 50 characters long");
-    }
-
-    private String getSalaryInfo() {
+    private double getSalaryInfo() {
         return GetInFo.getDoubleNumber("Salary: ", 0, 999999999);
     }
 
@@ -182,24 +177,9 @@ public class EmployeeService implements IEmployeeService {
 
     }
 
-    private String getEmailInfo() {
-        final String EMAIL_REGEX = "^[A-Za-z0-9]+@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
-        return GetInFo.getStringInfo("Email: ", EMAIL_REGEX,
-                "Name: character or number +@+ Tail: character or number or 1 sign.\n" +
-                        "Sign . not at the end.");
-    }
-
-    private String getPhoneNumberInfo() {
-        final String PHONE_NUMBER_REGEX = "^\\d{2}[-]0\\d{9}$";
-        return GetInFo.getStringInfo("Phone Number: ", PHONE_NUMBER_REGEX,
-                "Phone number format must be: xx-0xxxxxxxxx");
-    }
-
-    private String getIdentityCardInfo(List<Employee> list) {
-        final String IDENTITY_CARD_REGEX = "^[1-9][0-9]{8}$";
+    private String getAndCheckIdentityCard(List<Employee> list) {
         while (true) {
-            String identityCard = GetInFo.getStringInfo("IdentityCard: ", IDENTITY_CARD_REGEX,
-                    "Identity Card number must be consists of 9 numbers, the first number is different from 0");
+            String identityCard = GetInFo.getIdentityCardInfo();
             try {
                 for (Employee employee : list
                 ) {
@@ -212,11 +192,6 @@ public class EmployeeService implements IEmployeeService {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private String getGenderInfo() {
-        int choice = GetInFo.takeChoice("Gender: ", Person.GENDER_OPTIONS);
-        return Person.GENDER_OPTIONS[choice - 1];
     }
 
     private String getBirthdayInfo() {

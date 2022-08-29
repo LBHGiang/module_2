@@ -8,8 +8,15 @@ public class Villa extends Facility {
     public Villa() {
     }
 
-    public Villa(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, int timeUsed, String standard, double poolArea, int floors) {
-        super(serviceId, serviceName, area, cost, maxPerson, rentalType, timeUsed);
+    public Villa(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, boolean isMaintaining, String standard, double poolArea, int floors) {
+        super(serviceId, serviceName, area, cost, maxPerson, rentalType, isMaintaining);
+        this.standard = standard;
+        this.poolArea = poolArea;
+        this.floors = floors;
+    }
+
+    public Villa(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, String standard, double poolArea, int floors) {
+        super(serviceId, serviceName, area, cost, maxPerson, rentalType);
         this.standard = standard;
         this.poolArea = poolArea;
         this.floors = floors;
@@ -46,5 +53,10 @@ public class Villa extends Facility {
                 ", poolArea=" + poolArea +
                 ", floors=" + floors +
                 '}';
+    }
+
+    @Override
+    public String toFileString() {
+        return String.format("%s,%s,%s,%s", super.toFileString(), standard, poolArea, floors);
     }
 }

@@ -6,8 +6,13 @@ public class Room extends Facility {
     public Room() {
     }
 
-    public Room(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, int timeUsed, String freeService) {
-        super(serviceId, serviceName, area, cost, maxPerson, rentalType, timeUsed);
+    public Room(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, String freeService) {
+        super(serviceId, serviceName, area, cost, maxPerson, rentalType);
+        this.freeService = freeService;
+    }
+
+    public Room(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, boolean isMaintaining, String freeService) {
+        super(serviceId, serviceName, area, cost, maxPerson, rentalType, isMaintaining);
         this.freeService = freeService;
     }
 
@@ -24,5 +29,10 @@ public class Room extends Facility {
         return "Room{ " + super.toString() +
                 " freeService='" + freeService + '\'' +
                 '}';
+    }
+
+    @Override
+    public String toFileString() {
+        return String.format("%s,%s", super.toFileString(), freeService);
     }
 }

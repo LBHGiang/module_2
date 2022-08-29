@@ -7,19 +7,41 @@ public abstract class Facility {
     private double cost;
     private int maxPerson;
     private String rentalType;
-    private int TimeUsed;
+    private boolean isMaintaining = false;
+    public static final String[] RENTAL_TYPE = {"Year", "Month", "Hour"};
 
     public Facility() {
     }
 
-    public Facility(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, int timeUsed) {
+    public Facility(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, boolean isMaintaining) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.area = area;
         this.cost = cost;
         this.maxPerson = maxPerson;
         this.rentalType = rentalType;
-        TimeUsed = timeUsed;
+        this.isMaintaining = isMaintaining;
+    }
+
+    public Facility(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType) {
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.area = area;
+        this.cost = cost;
+        this.maxPerson = maxPerson;
+        this.rentalType = rentalType;
+    }
+
+    public String getStatus() {
+        return isMaintaining ? "Active" : "Maintaining";
+    }
+
+    public void turnOnActiveMode() {
+        isMaintaining = false;
+    }
+
+    public void turnOffActiveMode() {
+        isMaintaining = true;
     }
 
     public String getServiceId() {
@@ -70,14 +92,6 @@ public abstract class Facility {
         this.rentalType = rentalType;
     }
 
-    public int getTimeUsed() {
-        return TimeUsed;
-    }
-
-    public void setTimeUsed(int timeUsed) {
-        TimeUsed = timeUsed;
-    }
-
     @Override
     public String toString() {
         return "serviceId='" + serviceId + '\'' +
@@ -86,7 +100,11 @@ public abstract class Facility {
                 ", cost=" + cost +
                 ", maxPerson=" + maxPerson +
                 ", rentalType='" + rentalType + '\'' +
-                ", TimeUsed=" + TimeUsed +
+                ", status='" + getStatus() + '\'' +
                 '}';
+    }
+
+    public String toFileString() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s", serviceId, serviceName, area, cost, maxPerson, rentalType, isMaintaining);
     }
 }

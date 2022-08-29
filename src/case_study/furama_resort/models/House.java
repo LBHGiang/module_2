@@ -7,13 +7,14 @@ public class House extends Facility {
     public House() {
     }
 
-    public House(String standard, int floors) {
+    public House(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, boolean isMaintaining, String standard, int floors) {
+        super(serviceId, serviceName, area, cost, maxPerson, rentalType, isMaintaining);
         this.standard = standard;
         this.floors = floors;
     }
 
-    public House(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, int timeUsed, String standard, int floors) {
-        super(serviceId, serviceName, area, cost, maxPerson, rentalType, timeUsed);
+    public House(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, String standard, int floors) {
+        super(serviceId, serviceName, area, cost, maxPerson, rentalType);
         this.standard = standard;
         this.floors = floors;
     }
@@ -40,5 +41,10 @@ public class House extends Facility {
                 ", standard='" + standard + '\'' +
                 ", floors=" + floors +
                 '}';
+    }
+
+    @Override
+    public String toFileString() {
+        return String.format("%s,%s,%s", super.toFileString(), standard, floors);
     }
 }
