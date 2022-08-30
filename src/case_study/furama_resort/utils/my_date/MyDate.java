@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MyDate implements Comparable<MyDate> {
-    private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     private String strDate;
     private Date date = new Date();
 
@@ -33,13 +33,23 @@ public class MyDate implements Comparable<MyDate> {
         return date;
     }
 
-    public int getAge() throws ParseException {
+    public int getAge() {
         Date now = new Date();
         return (int) ((now.getTime() - this.date.getTime()) / 31556926 / 1000);
     }
 
     public static int getDays(MyDate startDate, MyDate endDate) {
         return (int) ((endDate.getDate().getTime() - startDate.getDate().getTime()) / 86400000);
+    }
+
+    public static boolean checkOrder(MyDate startDate, MyDate endDate) {
+        return endDate.getDate().getTime() - startDate.getDate().getTime() > 0;
+    }
+
+    //Ngày đặt phải >= ngày hiện tại
+    public boolean checkBookingDate() {
+        Date now = new Date();
+        return this.date.getTime() - now.getTime() > 0;
     }
 
     @Override

@@ -39,14 +39,14 @@ public class CustomerService implements ICustomerService {
 
         customerList.add(new Customer(
                 getAndCheckId(customerList),
-                GetInFo.getNameInfo(),
+                PersonService.getNameInfo(),
                 getBirthdayInfo(),
-                GetInFo.getGenderInfo(),
+                PersonService.getGenderInfo(),
                 getAndCheckIdentityCard(customerList),
-                GetInFo.getPhoneNumberInfo(),
-                GetInFo.getEmailInfo(),
+                PersonService.getPhoneNumberInfo(),
+                PersonService.getEmailInfo(),
                 getCustomerType(),
-                GetInFo.getAddressInfo()));
+                PersonService.getAddressInfo()));
 
         System.out.println("Added new customer successfully!");
         writeCustomerFile.writeCustomerFile(CUSTOMER_PATH, customerList);
@@ -80,28 +80,28 @@ public class CustomerService implements ICustomerService {
                     customer.setId(getAndCheckId(customerList));
                     break;
                 case 2:
-                    customer.setName(GetInFo.getNameInfo());
+                    customer.setName(PersonService.getNameInfo());
                     break;
                 case 3:
                     customer.setDateOfBirth(getBirthdayInfo());
                     break;
                 case 4:
-                    customer.setGender(GetInFo.getGenderInfo());
+                    customer.setGender(PersonService.getGenderInfo());
                     break;
                 case 5:
                     customer.setIdentityCard(getAndCheckIdentityCard(customerList));
                     break;
                 case 6:
-                    customer.setPhoneNumber(GetInFo.getPhoneNumberInfo());
+                    customer.setPhoneNumber(PersonService.getPhoneNumberInfo());
                     break;
                 case 7:
-                    customer.setEmail(GetInFo.getEmailInfo());
+                    customer.setEmail(PersonService.getEmailInfo());
                     break;
                 case 8:
                     customer.setCustomerType(getCustomerType());
                     break;
                 case 9:
-                    customer.setAddress(GetInFo.getAddressInfo());
+                    customer.setAddress(PersonService.getAddressInfo());
                     break;
                 case 11:
                     System.out.println("Thanks and see you again!");
@@ -162,7 +162,7 @@ public class CustomerService implements ICustomerService {
 
     private String getAndCheckIdentityCard(List<Customer> list) {
         while (true) {
-            String identityCard = GetInFo.getIdentityCardInfo();
+            String identityCard = PersonService.getIdentityCardInfo();
             try {
                 for (Customer customer : list
                 ) {

@@ -3,6 +3,7 @@ package case_study.furama_resort.models;
 public class House extends Facility {
     private String standard;
     private int floors;
+    public static final String[] HOUSE_STANDARD = {"5 Star", "4 Star", "3 Star"};
 
     public House() {
     }

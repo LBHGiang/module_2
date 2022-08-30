@@ -39,12 +39,12 @@ public class EmployeeService implements IEmployeeService {
 
         employeeList.add(new Employee(
                 getAndCheckId(employeeList),
-                GetInFo.getNameInfo(),
+                PersonService.getNameInfo(),
                 getBirthdayInfo(),
-                GetInFo.getGenderInfo(),
+                PersonService.getGenderInfo(),
                 getAndCheckIdentityCard(employeeList),
-                GetInFo.getPhoneNumberInfo(),
-                GetInFo.getEmailInfo(),
+                PersonService.getPhoneNumberInfo(),
+                PersonService.getEmailInfo(),
                 getLevelInfo(),
                 getPositionInfo(),
                 getSalaryInfo()));
@@ -80,22 +80,22 @@ public class EmployeeService implements IEmployeeService {
                     employee.setId(getAndCheckId(employeeList));
                     break;
                 case 2:
-                    employee.setName(GetInFo.getNameInfo());
+                    employee.setName(PersonService.getNameInfo());
                     break;
                 case 3:
                     employee.setDateOfBirth(getBirthdayInfo());
                     break;
                 case 4:
-                    employee.setGender(GetInFo.getGenderInfo());
+                    employee.setGender(PersonService.getGenderInfo());
                     break;
                 case 5:
                     employee.setIdentityCard(getAndCheckIdentityCard(employeeList));
                     break;
                 case 6:
-                    employee.setPhoneNumber(GetInFo.getPhoneNumberInfo());
+                    employee.setPhoneNumber(PersonService.getPhoneNumberInfo());
                     break;
                 case 7:
-                    employee.setEmail(GetInFo.getEmailInfo());
+                    employee.setEmail(PersonService.getEmailInfo());
                     break;
                 case 8:
                     employee.setLevel(getLevelInfo());
@@ -179,7 +179,7 @@ public class EmployeeService implements IEmployeeService {
 
     private String getAndCheckIdentityCard(List<Employee> list) {
         while (true) {
-            String identityCard = GetInFo.getIdentityCardInfo();
+            String identityCard = PersonService.getIdentityCardInfo();
             try {
                 for (Employee employee : list
                 ) {

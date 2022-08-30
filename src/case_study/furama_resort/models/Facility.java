@@ -100,8 +100,7 @@ public abstract class Facility {
                 ", cost=" + cost +
                 ", maxPerson=" + maxPerson +
                 ", rentalType='" + rentalType + '\'' +
-                ", status='" + getStatus() + '\'' +
-                '}';
+                ", status='" + getStatus() + '\'';
     }
 
     public String toFileString() {

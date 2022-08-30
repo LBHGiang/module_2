@@ -1,13 +1,16 @@
 package case_study.furama_resort.controllers;
 
 import case_study.furama_resort.services.IFacilityService;
+import case_study.furama_resort.services.IMaintainService;
 import case_study.furama_resort.services.impls.FacilityService;
+import case_study.furama_resort.services.impls.MaintainService;
 
 import java.util.Scanner;
 
 public class FacilityController {
     private final Scanner scanner = new Scanner(System.in);
     private final IFacilityService iFacilityService = new FacilityService();
+    private final IMaintainService iMaintainService = new MaintainService();
     private String choose;
 
     public void displayFacilityMenu() {
@@ -29,7 +32,7 @@ public class FacilityController {
                     iFacilityService.addNewObject();
                     break;
                 case "3":
-                    iFacilityService.displayMaintenanceList();
+                    iMaintainService.displayList();
                     break;
                 case "4":
                     return;
