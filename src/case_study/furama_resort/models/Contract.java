@@ -3,18 +3,18 @@ package case_study.furama_resort.models;
 import case_study.furama_resort.utils.my_date.MyDate;
 
 public class Contract extends Booking {
-   private String contractId;
-   private double deposits;
-   private double totalCost;
+    private String contractId;
+    private double totalCost;
+    private double deposits;
 
     public Contract() {
     }
 
-    public Contract(String bookingId, String customerId, MyDate startDate, MyDate endDate, String serviceName, String serviceType, String contractId, double deposits, double totalCost) {
+    public Contract(String bookingId, String customerId, MyDate startDate, MyDate endDate, String serviceName, String serviceType, String contractId, double totalCost, double deposits) {
         super(bookingId, customerId, startDate, endDate, serviceName, serviceType);
         this.contractId = contractId;
-        this.deposits = deposits;
         this.totalCost = totalCost;
+        this.deposits = deposits;
     }
 
     public String getContractId() {
@@ -25,14 +25,6 @@ public class Contract extends Booking {
         this.contractId = contractId;
     }
 
-    public double getDeposits() {
-        return deposits;
-    }
-
-    public void setDeposits(double deposits) {
-        this.deposits = deposits;
-    }
-
     public double getTotalCost() {
         return totalCost;
     }
@@ -41,12 +33,25 @@ public class Contract extends Booking {
         this.totalCost = totalCost;
     }
 
+    public double getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(double deposits) {
+        this.deposits = deposits;
+    }
+
     @Override
     public String toString() {
-        return "Contract{" +
-                "contractId=' " + contractId + '\'' + super.toString()+
-                ", deposits=" + deposits +
-                ", totalCost=" + totalCost +
+        return "Contract{ " + super.toString() +
+                ", contractId=' " + contractId + '\'' + super.toString() +
+                ", deposits=" + totalCost +
+                ", totalCost=" + deposits +
                 '}';
+    }
+
+    @Override
+    public String toFileString() {
+        return String.format("%s,%s,%s,%s", super.toFileString(), contractId, totalCost, deposits);
     }
 }

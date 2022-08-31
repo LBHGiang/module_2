@@ -7,20 +7,20 @@ public abstract class Facility {
     private double cost;
     private int maxPerson;
     private String rentalType;
-    private boolean isMaintaining = false;
+    private boolean isActive = true;
     public static final String[] RENTAL_TYPE = {"Year", "Month", "Hour"};
 
     public Facility() {
     }
 
-    public Facility(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, boolean isMaintaining) {
+    public Facility(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType, boolean isActive) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.area = area;
         this.cost = cost;
         this.maxPerson = maxPerson;
         this.rentalType = rentalType;
-        this.isMaintaining = isMaintaining;
+        this.isActive = isActive;
     }
 
     public Facility(String serviceId, String serviceName, double area, double cost, int maxPerson, String rentalType) {
@@ -33,15 +33,15 @@ public abstract class Facility {
     }
 
     public String getStatus() {
-        return isMaintaining ? "Active" : "Maintaining";
+        return isActive ? "Active" : "Maintaining";
     }
 
     public void turnOnActiveMode() {
-        isMaintaining = false;
+        isActive = false;
     }
 
     public void turnOffActiveMode() {
-        isMaintaining = true;
+        isActive = true;
     }
 
     public String getServiceId() {
@@ -104,6 +104,6 @@ public abstract class Facility {
     }
 
     public String toFileString() {
-        return String.format("%s,%s,%s,%s,%s,%s,%s", serviceId, serviceName, area, cost, maxPerson, rentalType, isMaintaining);
+        return String.format("%s,%s,%s,%s,%s,%s,%s", serviceId, serviceName, area, cost, maxPerson, rentalType, isActive);
     }
 }

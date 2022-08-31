@@ -14,7 +14,6 @@ public class MaintainService implements IMaintainService {
     public static final WriteMaintainFile writeMaintainFile = new WriteMaintainFile();
     private static Map<String, Integer> maintainList;
 
-
     @Override
     public void displayList() {
         maintainList = readMaintainFile.readMaintainFile();

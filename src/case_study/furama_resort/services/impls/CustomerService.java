@@ -53,6 +53,27 @@ public class CustomerService implements ICustomerService {
         displayList();
     }
 
+    public String addNewCustomer() {
+        customerList = readCustomerFile.readCustomerFile(CUSTOMER_PATH);
+        System.out.println("Please enter the following information:");
+
+        String customerId = getAndCheckId(customerList);
+        customerList.add(new Customer(
+                customerId,
+                PersonService.getNameInfo(),
+                getBirthdayInfo(),
+                PersonService.getGenderInfo(),
+                getAndCheckIdentityCard(customerList),
+                PersonService.getPhoneNumberInfo(),
+                PersonService.getEmailInfo(),
+                getCustomerType(),
+                PersonService.getAddressInfo()));
+
+        System.out.println("Added new customer successfully!");
+        writeCustomerFile.writeCustomerFile(CUSTOMER_PATH, customerList);
+        return customerId;
+    }
+
 
     @Override
     public void editInfo() {

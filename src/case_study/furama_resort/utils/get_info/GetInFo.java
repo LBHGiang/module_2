@@ -7,6 +7,7 @@ import case_study.furama_resort.models.Person;
 import case_study.furama_resort.utils.my_date.MyDate;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class GetInFo {
@@ -71,8 +72,15 @@ public class GetInFo {
             }
     }
 
+    public static String getStringInfo(String request) {
+        String property;
+        System.out.print(request);
+        property = scanner.nextLine();
+        return property;
+    }
+
     /**
-     * Hàm lấy lựa chọn
+     * Hàm lấy lựa chọn từ mảng String[]
      *
      * @param request Dòng thông báo yêu cầu người dùng chọn.
      * @param options Mảng String[] các lựa chọn
@@ -96,6 +104,61 @@ public class GetInFo {
             }
         }
     }
+
+    /**
+     * Hàm lấy lựa chọn từ List<>
+     *
+     * @param request Dòng thông báo yêu cầu người dùng chọn.
+     * @param options Mảng String[] các lựa chọn
+     * @return lựa chọn của người dùng kiểu int
+     */
+    public static int takeChoice(String request, List options) {
+        while (true) {
+            try {
+                System.out.println(request);
+                for (int i = 0; i < options.size(); i++) {
+                    System.out.println((i + 1) + "\t" + options.get(i).toString());
+                }
+                System.out.print("Please choose from 1 to " + options.size() + ": ");
+                choose = Integer.parseInt(scanner.nextLine());
+                if (choose < 1 || choose > options.size()) {
+                    throw new InvalidNumberException("");
+                }
+                return choose;
+            } catch (NumberFormatException | InvalidNumberException e) {
+                System.out.println("Invalid data entered. Please choose from 1 to " + options.size());
+            }
+        }
+    }
+
+    /**
+     * Hàm lấy lựa chọn từ List<>+1
+     * Lựa chọn cuối cùng để xử lí tình huống List ko có thông tin cần chọn,
+     *
+     * @param request Dòng thông báo yêu cầu người dùng chọn.
+     * @param options Mảng String[] các lựa chọn
+     * @return lựa chọn của người dùng kiểu int
+     */
+    public static int takeChoice(String request, List options, String lastOption) {
+        while (true) {
+            try {
+                System.out.println(request);
+                for (int i = 0; i < options.size(); i++) {
+                    System.out.println((i + 1) + "\t" + options.get(i).toString());
+                }
+                System.out.println((options.size() + 1) + "\t" + lastOption);
+                System.out.print("Please choose from 1 to " + (options.size() + 1) + ": ");
+                choose = Integer.parseInt(scanner.nextLine());
+                if (choose < 1 || choose > options.size() + 1) {
+                    throw new InvalidNumberException("");
+                }
+                return choose;
+            } catch (NumberFormatException | InvalidNumberException e) {
+                System.out.println("Invalid data entered. Please choose from 1 to " + (options.size() + 1));
+            }
+        }
+    }
+
 
     /**
      * Hàm lấy dứ liệu số thực

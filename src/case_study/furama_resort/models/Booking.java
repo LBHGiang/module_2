@@ -2,7 +2,7 @@ package case_study.furama_resort.models;
 
 import case_study.furama_resort.utils.my_date.MyDate;
 
-public class Booking {
+public class Booking implements Comparable<Booking> {
     private String bookingId;
     private String customerId;
     private MyDate startDate;
@@ -80,5 +80,20 @@ public class Booking {
                 ", serviceName='" + serviceName + '\'' +
                 ", serviceType='" + serviceType + '\'' +
                 '}';
+    }
+
+    public String toFileString() {
+        return String.format("%s,%s,%s,%s,%s,%s", bookingId, customerId, startDate, endDate, serviceName, serviceType);
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+        if (MyDate.checkOrder(this.getStartDate(), o.getStartDate())) {
+            return 1;
+        }
+        if (MyDate.checkOrder(this.getEndDate(), o.getEndDate())) {
+            return 1;
+        }
+        return 0;
     }
 }

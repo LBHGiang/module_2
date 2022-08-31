@@ -35,7 +35,9 @@ public class MyDate implements Comparable<MyDate> {
 
     public int getAge() {
         Date now = new Date();
+
         return (int) ((now.getTime() - this.date.getTime()) / 31556926 / 1000);
+//        return ((now.getYear() - this.date.getYear()));
     }
 
     public static int getDays(MyDate startDate, MyDate endDate) {
