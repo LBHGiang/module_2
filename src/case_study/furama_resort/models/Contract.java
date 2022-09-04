@@ -54,4 +54,15 @@ public class Contract extends Booking {
     public String toFileString() {
         return String.format("%s,%s,%s,%s", super.toFileString(), contractId, totalCost, deposits);
     }
+
+    @Override
+    public int compareTo(Booking o) {
+        if (MyDate.checkOrder(this.getStartDate(), o.getStartDate())) {
+            return 1;
+        }
+        if (MyDate.checkOrder(this.getEndDate(), o.getEndDate())) {
+            return 1;
+        }
+        return 0;
+    }
 }

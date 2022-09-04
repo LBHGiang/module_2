@@ -68,5 +68,15 @@ public class VillaService {
         return GetInFo.getIntegerNumber("Number of floors: ", 0, 100);
     }
 
+    public void editStatus(Facility facility) {
+        villaList = FacilityService.readFacilityFile.readVillaFile();
+        for (Facility fac : villaList
+        ) {
+            if (fac.getServiceId().equals(facility.getServiceId())) {
+                fac.turnOffActiveMode();
+            }
 
+        }
+        FacilityService.writeFacilityFile.writeVillaFile(villaList);
+    }
 }

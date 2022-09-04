@@ -1,10 +1,9 @@
 package case_study.furama_resort.services.impls;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.IdExistedException;
+import case_study.furama_resort.models.Facility;
 import case_study.furama_resort.models.Room;
 import case_study.furama_resort.utils.get_info.GetInFo;
-import case_study.furama_resort.utils.read_and_write.ReadFacilityFile;
-import case_study.furama_resort.utils.read_and_write.WriteFacilityFile;
 
 import java.util.List;
 import java.util.Scanner;
@@ -57,4 +56,15 @@ public class RoomService {
         return Room.FREE_SERVICE[choice - 1];
     }
 
+    public void editStatus(Facility facility) {
+        roomList = FacilityService.readFacilityFile.readRoomFile();
+        for (Facility fac : roomList
+        ) {
+            if (fac.getServiceId().equals(facility.getServiceId())) {
+                fac.turnOffActiveMode();
+            }
+
+        }
+        FacilityService.writeFacilityFile.writeRoomFile(roomList);
+    }
 }

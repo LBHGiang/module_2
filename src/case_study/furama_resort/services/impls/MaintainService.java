@@ -58,7 +58,7 @@ public class MaintainService implements IMaintainService {
         }
     }
 
-    @Override
+
     public void completeMaintenance(String serviceId) {
         maintainList = readMaintainFile.readMaintainFile();
         Facility facility = FacilityService.findFacility(serviceId);
@@ -66,13 +66,13 @@ public class MaintainService implements IMaintainService {
             System.out.println("Id does not exist");
             return;
         }
-        maintainList.put(facility.getServiceId(), 0);
+        maintainList.replace(facility.getServiceId(), 0);
         facility.turnOnActiveMode();
         writeMaintainFile.writeMaintainFile(maintainList);
     }
 
-    @Override
-    public void checkMaintain(String serviceId) {
+
+    public static void toMaintain(String serviceId) {
         maintainList = readMaintainFile.readMaintainFile();
         Facility facility = FacilityService.findFacility(serviceId);
         if (facility == null) {
@@ -80,6 +80,18 @@ public class MaintainService implements IMaintainService {
             return;
         }
         maintainList.put(facility.getServiceId(), 0);
+        writeMaintainFile.writeMaintainFile(maintainList);
+    }
+
+
+    public static void countTimeUsed(Facility facility) {
+        maintainList = readMaintainFile.readMaintainFile();
+        int oldTimes = maintainList.get(facility.getServiceId());
+        int newTimes = oldTimes + 1;
+        maintainList.replace(facility.getServiceId(), newTimes);
+        if (newTimes >= 5) {
+            facility.turnOffActiveMode();
+        }
         writeMaintainFile.writeMaintainFile(maintainList);
     }
 

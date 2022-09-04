@@ -32,16 +32,20 @@ public abstract class Facility {
         this.rentalType = rentalType;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
     public String getStatus() {
-        return isActive ? "Active" : "Maintaining";
+        return isActive ? "Active" : "Maintaining or being used";
     }
 
     public void turnOnActiveMode() {
-        isActive = false;
+        isActive = true;
     }
 
     public void turnOffActiveMode() {
-        isActive = true;
+        isActive = false;
     }
 
     public String getServiceId() {

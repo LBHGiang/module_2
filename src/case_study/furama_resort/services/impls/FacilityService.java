@@ -63,44 +63,6 @@ public class FacilityService implements IFacilityService {
         }
     }
 
-    public static String getAndCheckHouseId(List<House> list) {
-        final String SERVICE_ID_REGEX = "^\\d{4}]$";
-        while (true) {
-            String id = GetInFo.getStringInfo("House Id: SVHO-", SERVICE_ID_REGEX,
-                    "House Id in the format SVHO-YYYY. Y is number.");
-            try {
-                for (House house : list
-                ) {
-                    if (house.getServiceId().equals(id)) {
-                        throw new IdExistedException("Id already exists! Please re-enter!");
-                    }
-                }
-                return "SVHO" + id;
-            } catch (IdExistedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    public static String getAndCheckRoomId(List<Room> list) {
-        final String SERVICE_ID_REGEX = "^\\d{4}]$";
-        while (true) {
-            String id = GetInFo.getStringInfo("Room Id: SVRO-", SERVICE_ID_REGEX,
-                    "Room Id in the format SVRO-YYYY. Y is number.");
-            try {
-                for (Room room : list
-                ) {
-                    if (room.getServiceId().equals(id)) {
-                        throw new IdExistedException("Id already exists! Please re-enter!");
-                    }
-                }
-                return "SVRO" + id;
-            } catch (IdExistedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     public static double getUsableArea() {
         return GetInFo.getDoubleNumber("Usable Area: ", 30, 10000);
     }
@@ -153,6 +115,16 @@ public class FacilityService implements IFacilityService {
             }
         }
         return null;
+    }
+
+    public void editFacilityStatus(Facility facility) {
+        if (facility instanceof Room) {
+            roomService.editStatus(facility);
+        } else if (facility instanceof House) {
+            houseService.editStatus(facility);
+        } else {
+            villaService.editStatus(facility);
+        }
     }
 
 }

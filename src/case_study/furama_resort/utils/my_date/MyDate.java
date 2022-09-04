@@ -61,7 +61,6 @@ public class MyDate implements Comparable<MyDate> {
 
     @Override
     public int compareTo(MyDate o) {
-        return (int) (this.getDate().getTime() - o.getDate().getTime());
+        return Long.compare(this.getDate().getTime(), o.getDate().getTime());
     }
-
 }

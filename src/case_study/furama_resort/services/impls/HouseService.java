@@ -1,6 +1,7 @@
 package case_study.furama_resort.services.impls;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.IdExistedException;
+import case_study.furama_resort.models.Facility;
 import case_study.furama_resort.models.House;
 import case_study.furama_resort.utils.get_info.GetInFo;
 
@@ -63,4 +64,16 @@ public class HouseService {
         return GetInFo.getIntegerNumber("Number of floors: ", 0, 100);
     }
 
+    public void editStatus(Facility facility) {
+        houseList = FacilityService.readFacilityFile.readHouseFile();
+        for (Facility fac : houseList
+        ) {
+            if (fac.getServiceId().equals(facility.getServiceId())) {
+                fac.turnOffActiveMode();
+            }
+
+        }
+        FacilityService.writeFacilityFile.writeHouseFile(houseList);
+    }
 }
+

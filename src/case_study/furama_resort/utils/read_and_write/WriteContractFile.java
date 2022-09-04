@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class WriteContractFile {
     public void writeContractFile(Set<Contract> contractList) {
-        final String CONTRACT_PATH = "src\\case_study\\furama_resort\\data\\contract.csv";
+        final String CONTRACT_PATH = "src\\case_study\\furama_resort\\data\\signed_contract.csv";
         StringBuilder data = new StringBuilder("BookingId, CustomerId, StartDate, EndDate, ServiceName,ServiceType, ContractId, TotalCost, Deposits\n");
 
         for (Contract contract : contractList) {

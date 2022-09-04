@@ -1,2 +1,2 @@
-Service Id,Service Name,Area,Cost,Max Person,Rental Type,Is Maintaining,Standard,Pool Area,Floors
-SVVL1111,qweqwe eqw,33.0,33.0,11,Month,false,3 Star,44.0,1
+Service Id,Service Name,Area,Cost,Max Person,Rental Type,Is Active?,Standard,Pool Area,Floors
+SVVL1111,wfwef,33.0,33.0,2,Month,false,5 Star,33.0,2

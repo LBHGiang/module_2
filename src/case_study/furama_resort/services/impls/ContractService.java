@@ -6,15 +6,21 @@ import case_study.furama_resort.models.Contract;
 import case_study.furama_resort.services.IContractService;
 import case_study.furama_resort.utils.get_info.GetInFo;
 import case_study.furama_resort.utils.read_and_write.ReadContractFile;
+import case_study.furama_resort.utils.read_and_write.ReadUnsignedFile;
 import case_study.furama_resort.utils.read_and_write.WriteContractFile;
+import case_study.furama_resort.utils.read_and_write.WriteUnsignedFile;
 
-import java.util.*;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Set;
 
 public class ContractService implements IContractService {
     private static final Scanner scanner = new Scanner(System.in);
     private static Set<Contract> contractList;
     private final ReadContractFile readContractFile = new ReadContractFile();
+    private final ReadUnsignedFile readUnsignedFile = new ReadUnsignedFile();
     private final WriteContractFile writeContractFile = new WriteContractFile();
+    private final WriteUnsignedFile writeUnsignedFile = new WriteUnsignedFile();
 
     @Override
     public void displayList() {
@@ -32,7 +38,12 @@ public class ContractService implements IContractService {
 
     @Override
     public void addNewObject() {
-        Booking booking = BookingService.getBookingQueue().remove();
+        Queue<Booking> bookingQueue = readUnsignedFile.readUnsignedFile();
+        if (bookingQueue.isEmpty()) {
+            System.out.println("Villas and Houses have no booking yet");
+            return;
+        }
+        Booking booking = bookingQueue.remove();
         contractList = readContractFile.readContractFile();
         System.out.println("Please enter the following information:");
         String contractId = getContractId(contractList);
@@ -51,6 +62,7 @@ public class ContractService implements IContractService {
                 deposits));
         System.out.println("Added new contract successfully!");
         writeContractFile.writeContractFile(contractList);
+        writeUnsignedFile.writeUnsignedFile(bookingQueue);
         displayList();
     }
 
