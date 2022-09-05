@@ -8,6 +8,8 @@ public class FuramaController {
     private final CustomerController customerController = new CustomerController();
     private final FacilityController facilityController = new FacilityController();
     private final BookingController bookingController = new BookingController();
+    private final PromotionController promotionController = new PromotionController();
+
     private String choose;
 
     public void displayMainMenu() {
@@ -36,6 +38,7 @@ public class FuramaController {
                     bookingController.displayBookingMenu();
                     break;
                 case "5":
+                    promotionController.displayPromotionMenu();
                     break;
                 case "6":
                     System.out.println("Thanks and see you again!");

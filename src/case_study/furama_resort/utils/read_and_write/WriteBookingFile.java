@@ -3,7 +3,6 @@ package case_study.furama_resort.utils.read_and_write;
 import case_study.furama_resort.models.Booking;
 import utils.read_and_write_file_skip_line1.WriteFileUtil;
 
-import java.util.List;
 import java.util.Set;
 
 public class WriteBookingFile {

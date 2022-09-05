@@ -2,6 +2,8 @@ package case_study.furama_resort.models;
 
 import case_study.furama_resort.utils.my_date.MyDate;
 
+import java.util.Objects;
+
 public class Booking implements Comparable<Booking> {
     private String bookingId;
     private String customerId;
@@ -88,10 +90,25 @@ public class Booking implements Comparable<Booking> {
 
     @Override
     public int compareTo(Booking o) {
-        if (this.getStartDate().compareTo(o.getStartDate())==0){
-            return this.getEndDate().compareTo(o.getEndDate());
+        if (!(this.getStartDate().compareTo(o.getStartDate()) == 0)) {
+            return this.getStartDate().compareTo(o.getStartDate());
         }
-        return this.getStartDate().compareTo(o.getStartDate());
+        if (!(this.getEndDate().compareTo(o.getEndDate()) == 0)) {
+            return (this.getEndDate().compareTo(o.getEndDate()));
+        }
+        return (this.getBookingId().compareTo(o.getBookingId()));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return bookingId.equals(booking.bookingId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookingId);
+    }
 }

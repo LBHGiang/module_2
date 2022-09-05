@@ -1,9 +1,13 @@
 package case_study.furama_resort.controllers;
 
+import case_study.furama_resort.services.IPromotionService;
+import case_study.furama_resort.services.impls.PromotionService;
+
 import java.util.Scanner;
 
 public class PromotionController {
     private final Scanner scanner = new Scanner(System.in);
+    private final IPromotionService iPromotionService = new PromotionService();
     private String choose;
 
     public void displayPromotionMenu() {
@@ -18,7 +22,7 @@ public class PromotionController {
             choose = scanner.nextLine();
             switch (choose) {
                 case "1":
-
+                    iPromotionService.displayListCustomersUseService();
                     break;
                 case "2":
                     break;

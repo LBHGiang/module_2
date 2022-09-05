@@ -46,6 +46,10 @@ public class BookingService implements IBookingService {
         String bookingId = getBookingId(bookingList);
         String customerId = getCustomerId();
         Facility facility = getService();
+        if (facility == null) {
+            System.out.println("No services are active anymore!");
+            return;
+        }
         Booking booking = new Booking(
                 bookingId,
                 customerId,
@@ -54,6 +58,7 @@ public class BookingService implements IBookingService {
                 facility.getServiceId(),
                 "ServiceType");
         bookingList.add(booking);
+        System.out.println("Added new booking successfully!");
         if (!(facility instanceof Room)) {
             bookingQueue = readUnsignedFile.readUnsignedFile();
             bookingQueue.add(booking);
@@ -61,7 +66,6 @@ public class BookingService implements IBookingService {
         }
         facilityService.editFacilityStatus(facility);
         MaintainService.countTimeUsed(facility);
-        System.out.println("Added new booking successfully!");
         writeBookingFile.writeBookingFile(bookingList);
         displayList();
     }
@@ -135,6 +139,9 @@ public class BookingService implements IBookingService {
             if (facility.isActive()) {
                 activeFacility.add(facility);
             }
+        }
+        if (activeFacility.size() == 0) {
+            return null;
         }
         int choice = GetInFo.takeChoice("Choose service: ", activeFacility);
         return activeFacility.get(choice - 1);

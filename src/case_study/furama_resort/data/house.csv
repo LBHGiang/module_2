@@ -1,3 +1,4 @@
 Service Id,Service Name,Area,Cost,Max Person,Rental Type,Is Active?,Standard,Floors
 SVHO2222,qqqqqqq,222.0,222.0,2,Month,false,4 Star,2
-SVHO4444,qqqqqqq,44.0,44.0,4,Year,false,3 Star,2
+SVHO4444,qqqqqqq,44.0,44.0,4,Year,true,3 Star,2
+SVHO1234,ưefwefwef,44.0,44.0,4,Hour,true,3 Star,4

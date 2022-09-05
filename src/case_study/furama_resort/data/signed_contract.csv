@@ -1,0 +1,2 @@
+BookingId, CustomerId, StartDate, EndDate, ServiceName,ServiceType, ContractId, TotalCost, Deposits
+1,A2,22/2/2222,24/2/2222,SVVL1156,ServiceType,1,11.0,11.0

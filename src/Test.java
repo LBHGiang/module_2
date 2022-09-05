@@ -6,12 +6,9 @@ import java.util.*;
 class Test {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws ParseException {
-        Set<MyDate> myDates = new TreeSet<>();
-        myDates.add(new MyDate("22/11/1111"));
-        myDates.add(new MyDate("20/11/1111"));
-        myDates.add(new MyDate("21/11/1111"));
-        myDates.add(new MyDate("19/12/1111"));
-        System.out.println(myDates);
+        MyDate myDate = new MyDate("02/03/1999");
+        System.out.println(myDate.getDate().getYear());
+
 
     }
 }
