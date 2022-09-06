@@ -107,7 +107,7 @@ public abstract class Facility {
                 ", status='" + getStatus() + '\'';
     }
 
-    public String toFileString() {
+   public String toFileString() {
         return String.format("%s,%s,%s,%s,%s,%s,%s", serviceId, serviceName, area, cost, maxPerson, rentalType, isActive);
     }
 }
