@@ -1,6 +1,5 @@
 package case_study.furama_resort.services.impls;
 
-import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.IdExistedException;
 import case_study.furama_resort.models.Facility;
 import case_study.furama_resort.models.House;
 import case_study.furama_resort.models.Room;
@@ -30,7 +29,6 @@ public class FacilityService implements IFacilityService {
     @Override
     public void displayList() {
         facilityList = getFacilityList();
-
         if (facilityList.size() == 0) {
             System.out.println("Empty Facility list!");
             return;

@@ -2,12 +2,16 @@ package utils.getInfo;
 
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.InvalidFormatException;
 import bai_tap_lam_them.bai3_quan_ly_codegym.service.utils.InvalidNumberException;
+import case_study.furama_resort.models.Booking;
+import case_study.furama_resort.models.Employee;
 import case_study.furama_resort.models.Facility;
 import case_study.furama_resort.utils.my_date.MyDate;
+import case_study.furama_resort.utils.read_and_write.ReadBookingFile;
+import case_study.furama_resort.utils.read_and_write.ReadEmployeeFile;
 
+import java.nio.file.Path;
 import java.text.ParseException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GetInFo {
     public static Scanner scanner = new Scanner(System.in);
@@ -297,5 +301,17 @@ public class GetInFo {
                 "Length of name must be from 5 to 50 characters long");
     }
 
-
+    /**
+     * ID tự động tăng
+     */
+    public static String getAutoIncrementId() {
+        ReadEmployeeFile readEmployeeFile = new ReadEmployeeFile();
+        final String PATH = "";
+        List<Employee> employeeList = readEmployeeFile.readEmployeeFile(PATH);
+        if (employeeList.isEmpty()) {
+            return "EX-0001";
+        }
+        String[] arr = employeeList.get(employeeList.size() - 1).getId().split("-");
+        return arr[0] + "-" + (Integer.parseInt(arr[1]) + 1);
+    }
 }
